@@ -9,23 +9,27 @@ class App extends React.Component {
     // should update to be in the state
     var backgroundURL = "";
     if(hashHistory.getCurrentLocation().pathname == "/") {
-      backgroundURL = "http://www.getmdl.io/assets/demos/transparent.jpg"
+      backgroundURL = './books.jpg'
     } else if (hashHistory.getCurrentLocation().pathname == "/data") {
-      backgroundURL = "";
+      backgroundURL = "./spacex.jpg";
     } else {
-      backgroundURL = "";
+      backgroundURL = './capitolHill.jpg'
     }
     return (
-      <div style={{height: '300px', position: 'relative'}}>  
-          <Layout style={{background: 'url('+ backgroundURL + ') center / cover'}}>  
-          <Header transparent title="The post election informative" style={{color: 'white'}}>
-            <Navigation>
-              <Link to='/'>Stories</Link>
-              <Link to='/data'>Data</Link>
-              <Link to='/help'>Get Involved</Link>
-            </Navigation>
-          </ Header>
-        </Layout>
+      <div>
+        <div style={{height: '300px', position: 'relative'}}>  
+            <Layout style={{background: 'url('+ backgroundURL + ') center / cover'}}>  
+            <Header transparent title="Stories" style={{color: 'white'}}  className="navLink">
+              <Navigation>
+                <Link className="navLink" to='/'>Stories</Link>
+                <Link className="navLink" to='/data'>Data</Link>
+                <Link className="navLink" to='/help'>Get Involved</Link>
+              </Navigation>         
+            </ Header>
+            {/* make this p element render conditionally depending on the current page*/ }
+            <p>Informing people one story at a time</p>
+          </Layout>
+        </div>
         {this.props.children}
       </div>
     );
