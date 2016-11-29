@@ -14,7 +14,7 @@ var config = {
   apiKey: "AIzaSyDYIT2x9mIRDK9_DPwtv2-B-wCAinfYrvU",
   authDomain: "final-727e2.firebaseapp.com",
   databaseURL: "https://final-727e2.firebaseio.com",
-  storageBucket: "",
+  storageBucket: "final-727e2.appspot.com",
   messagingSenderId: "834057190458"
 };
 firebase.initializeApp(config);
