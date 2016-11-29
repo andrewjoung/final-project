@@ -1,18 +1,32 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Layout, Header, Navigation } from 'react-mdl';
+import { Link, hashHistory } from 'react-router';
 
-class App extends Component {
+class App extends React.Component {
   render() {
+    // should update to be in the state
+    var backgroundURL = "";
+    if(hashHistory.getCurrentLocation().pathname == "/") {
+      backgroundURL = "http://www.getmdl.io/assets/demos/transparent.jpg"
+    } else if (hashHistory.getCurrentLocation().pathname == "/data") {
+      backgroundURL = "";
+    } else {
+      backgroundURL = "";
+    }
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div style={{height: '300px', position: 'relative'}}>  
+          <Layout style={{background: 'url('+ backgroundURL + ') center / cover'}}>  
+          <Header transparent title="The post election informative" style={{color: 'white'}}>
+            <Navigation>
+              <Link to='/'>Stories</Link>
+              <Link to='/data'>Data</Link>
+              <Link to='/help'>Get Involved</Link>
+            </Navigation>
+          </ Header>
+        </Layout>
+        {this.props.children}
       </div>
     );
   }

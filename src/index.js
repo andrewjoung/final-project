@@ -1,8 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import GetInvolved from './GetInvolved';
+import DataPage from './DataPage';
+import StoriesPage from './StoriesPage';
 import './index.css';
 import firebase from 'firebase';
+import {Router, Route, hashHistory, IndexRoute} from 'react-router';
+import 'react-mdl/extra/material.css';
+import 'react-mdl/extra/material.js';
 
 var config = {
   apiKey: "AIzaSyDYIT2x9mIRDK9_DPwtv2-B-wCAinfYrvU",
@@ -14,6 +20,12 @@ var config = {
 firebase.initializeApp(config);
 
 ReactDOM.render(
-  <App />,
+  <Router history={hashHistory}>
+    <Route path="/" component={App}>
+      <IndexRoute component={StoriesPage} />
+      <Route path="data" component={DataPage}/>
+      <Route path="help" component={GetInvolved}/>
+    </ Route>
+  </ Router>,
   document.getElementById('root')
 );
