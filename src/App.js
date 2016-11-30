@@ -34,13 +34,20 @@ class App extends React.Component {
   }
   
   postToFirebase() {
-    // if content is empty, disable the send post button
+    var user = "";
+    if (!this.state.username) {
+      user = "Anonymous" 
+    } else {
+      user = this.state.username;
+    }
     var storyData= {
       content: this.state.story,
-      poster: this.state.username,
-      tags: this.state.tags,
+      poster: user,
       likes: 0,
       reported: false
+    }
+    if (this.state.tags) {
+      storyData.tags = this.state.tags;
     }
     var storiesRef = firebase.database().ref('stories/');
     storiesRef.push(storyData);
@@ -49,6 +56,12 @@ class App extends React.Component {
   }
   
   render() {
+    var disableShare;
+    if (!this.state.story || this.state.story == "") {
+      disableShare = true;
+    } else {
+      disableShare = false;
+    }
     var backgroundURL = "";
     var content = "";
     if(hashHistory.getCurrentLocation().pathname === "/") {
@@ -106,7 +119,7 @@ class App extends React.Component {
                     onChange={this.handleTyping}
                 />
                 <Button onClick={this.closeModal}>Cancel</Button>
-                <Button onClick={this.postToFirebase}>Share!</Button>
+                <Button onClick={this.postToFirebase} disabled={disableShare}>Share!</Button>
               </DialogContent>
           </Dialog>
         </div>
