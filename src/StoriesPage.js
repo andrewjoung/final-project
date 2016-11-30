@@ -50,5 +50,4 @@ class Story extends React.Component {
   }
 }
 
-export { Story };
 export default StoriesPage;
