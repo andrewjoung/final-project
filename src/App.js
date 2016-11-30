@@ -44,6 +44,8 @@ class App extends React.Component {
     }
     var storiesRef = firebase.database().ref('stories/');
     storiesRef.push(storyData);
+    // add a "thanks for sharing!" modal thing
+    this.setState({showShareModal: false})
   }
   
   render() {
