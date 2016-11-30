@@ -21,26 +21,32 @@ class App extends React.Component {
     this.postToFirebase = this.postToFirebase.bind(this);
   }
 
+  // shows the "share modal" when "share" in nav bar is clicked
   handleShareLink() {
     this.setState({
       showShareModal: true
     });
   }
 
+  // closes the "share modal"
   closeModal() {
     this.setState({
       showShareModal: false,
     })
   }
 
+  // closes the snackbar
   handleTimeoutSnackbar() {
     this.setState({showSnackBar: false});
   }
 
+  // updates the state of the app based on what the user has typed into 
+  // the story modal
   handleTyping(event) {
     this.setState({[event.target.name]: event.target.value})
   }
   
+  // sends the story and its relevant information to firebase
   postToFirebase() {
     var user = "";
     if (!this.state.username) {
