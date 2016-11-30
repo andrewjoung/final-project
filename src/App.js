@@ -44,7 +44,8 @@ class App extends React.Component {
       content: this.state.story,
       poster: user,
       likes: 0,
-      reported: false
+      reported: false,
+      postTime: firebase.database.ServerValue.TIMESTAMP
     }
     if (this.state.tags) {
       storyData.tags = this.state.tags;
@@ -74,52 +75,56 @@ class App extends React.Component {
     return (
       <div>
         <div style={{height: '300px', position: 'relative'}}>
-            <div className="layout">  
+          <div className="layout">  
             <Layout style={{background: 'url('+ backgroundURL + ') center / cover'}}>
-            <div className="head">  
-            <Header transparent title="Fabella" className="navLink">
-              <Navigation>
-                <Link className="navLink" to='/'>Stories</Link>
-                <a className="shareLink navLink" onClick={this.handleShareLink}> Share </a>
-                <Link className="navLink" to='/data'>Data</Link>
-                <Link className="navLink" to='/help'>Get Involved</Link>
-              </Navigation>         
-            </ Header>
-            </div>
-            {/* make this p element render conditionally depending on the current page*/ }
-            {/*<p>Informing people one story at a time</p>*/}
-          </Layout>
+              <div className="head">  
+                <Header transparent title="Fabella" className="navLink">
+                  <Navigation>
+                    <Link className="navLink" to='/'>Stories</Link>
+                    <a className="shareLink navLink" onClick={this.handleShareLink}> Share </a>
+                    <Link className="navLink" to='/data'>Data</Link>
+                    <Link className="navLink" to='/help'>Get Involved</Link>
+                  </Navigation>         
+                </ Header>
+              </div>
+              {/* make this p element render conditionally depending on the current page*/ }
+              {/*<p>Informing people one story at a time</p>*/}
+            </Layout>
           </div>
-          <Dialog open={this.state.showShareModal}>
+          <Dialog open={this.state.showShareModal} style={{width: '500px'}}>
             <DialogTitle>Share your story!</DialogTitle>
               <DialogContent>
                 <p>We'd love to hear your story.</p>
                 <Textfield
-                    onChange={() => {}}
                     label="Username..."
                     floatingLabel
-                    style={{width: '200px'}}
+                    style={{width: '500px'}}
                     name="username"
                     onChange={this.handleTyping}
                 />
+              
                 <Textfield
-                    onChange={() => {}}
                     label="Story..."
                     floatingLabel
-                    style={{width: '200px'}}
+                    style={{width: '500px'}}
                     name="story"
                     onChange={this.handleTyping}
+                    rows={7}
+                    placeholder="Feel free to share your experiences about identity, politics, or living in America. We simply ask that your story promotes understanding and equality."
                 />
+              
                 <Textfield
-                    onChange={() => {}}
                     label="Tags..."
                     floatingLabel
-                    style={{width: '200px'}}
+                    style={{width: '500px'}}
                     name="tags"
                     onChange={this.handleTyping}
                 />
-                <Button onClick={this.closeModal}>Cancel</Button>
-                <Button onClick={this.postToFirebase} disabled={disableShare}>Share!</Button>
+            
+                <DialogActions>
+                  <Button onClick={this.postToFirebase} disabled={disableShare}>Share!</Button>
+                  <Button onClick={this.closeModal}>Cancel</Button>
+                </DialogActions>
               </DialogContent>
           </Dialog>
         </div>
