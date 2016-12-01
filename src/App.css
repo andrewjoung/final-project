@@ -22,3 +22,21 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+p{
+  text-align: center;
+  
+}
+
+@media screen and (max-width: 1024px) {
+  header.mdl-layout__header.mdl-layout__header--transparent.navLink {
+    display: flex;
+    
+  }
+}
+
+.head{
+  position: fixed;
+  width: 100%;
+}
+

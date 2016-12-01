@@ -9,6 +9,7 @@ import firebase from 'firebase';
 import {Router, Route, hashHistory, IndexRoute} from 'react-router';
 import 'react-mdl/extra/material.css';
 import 'react-mdl/extra/material.js';
+import './App.css';
 
 var config = {
   apiKey: "AIzaSyDYIT2x9mIRDK9_DPwtv2-B-wCAinfYrvU",

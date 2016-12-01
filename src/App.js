@@ -6,6 +6,7 @@ import { Layout, Header, Navigation, Dialog, DialogContent,
     from 'react-mdl';
 import { Link, hashHistory } from 'react-router';
 import firebase from 'firebase';
+//import {Header } from 'material-design-lite';
 
 class App extends React.Component {
   constructor(props) {
@@ -92,8 +93,9 @@ class App extends React.Component {
         <div style={{height: '300px', position: 'relative'}}>
           <div className="layout">  
             <Layout style={{background: 'url('+ backgroundURL + ') center / cover'}}>
+            <div className="navWrapper">
               <div className="head">  
-                <Header transparent title="Fabella" className="navLink">
+                <Header transparent title="Fabella" className = "mdl-layout mdl-js-layout mdl-layout--fixed-header" className="navLink">
                   <Navigation>
                     <Link className="navLink" to='/'>Stories</Link>
                     <a className="shareLink navLink" onClick={this.handleShareLink}> Share </a>
@@ -101,6 +103,7 @@ class App extends React.Component {
                     <Link className="navLink" to='/help'>Get Involved</Link>
                   </Navigation>         
                 </ Header>
+              </div>
               </div>
               {/* make this p element render conditionally depending on the current page*/ }
               {/*<p>Informing people one story at a time</p>*/}
