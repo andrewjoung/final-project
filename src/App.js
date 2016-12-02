@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Layout, Header, Navigation, Dialog, DialogContent, 
-  DialogTitle, DialogActions, Textfield, Button, Snackbar } 
+  DialogTitle, DialogActions, Textfield, Button, Snackbar, IconButton, Tooltip } 
     from 'react-mdl';
 import { Link, hashHistory } from 'react-router';
 import firebase from 'firebase';
@@ -56,6 +56,7 @@ class App extends React.Component {
       user = this.state.username;
     }
     var storyData= {
+      title: this.state.title,
       content: this.state.story,
       poster: user,
       likes: 0,
@@ -73,7 +74,7 @@ class App extends React.Component {
   render() {
     // disables the share button when a story has not been typed 
     var disableShare;
-    if (!this.state.story || this.state.story == "") {
+    if ((!this.state.story || this.state.story == "") || (!this.state.title || this.state.title == "")) {
       disableShare = true;
     } else {
       disableShare = false;
@@ -98,11 +99,13 @@ class App extends React.Component {
                 <Header transparent title="Fabella" className = "mdl-layout mdl-js-layout mdl-layout--fixed-header" className="navLink">
                   <Navigation>
                     <Link className="navLink" to='/'>Stories</Link>
-                    <a className="shareLink navLink" onClick={this.handleShareLink}> Share </a>
                     <Link className="navLink" to='/data'>Data</Link>
                     <Link className="navLink" to='/help'>Get Involved</Link>
+                    <Tooltip label="Share your story!">
+                      <IconButton name="message" className="shareLink navLink" onClick={this.handleShareLink} aria-label="Share your story"/>
+                    </Tooltip>
                   </Navigation>         
-                </ Header>
+                </Header>
               </div>
               </div>
               {/* make this p element render conditionally depending on the current page*/ }
@@ -118,6 +121,13 @@ class App extends React.Component {
                     floatingLabel
                     style={{width: '500px'}}
                     name="username"
+                    onChange={this.handleTyping}
+                />
+                 <Textfield
+                    label="Title"
+                    floatingLabel
+                    style={{width: '500px'}}
+                    name="title"
                     onChange={this.handleTyping}
                 />
                 <Textfield
