@@ -24,3 +24,7 @@ body {
 .snackBarText {
   text-align: center;
 }
+
+.cardDiv {
+  margin: 40px;
+}
