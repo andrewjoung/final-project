@@ -57,7 +57,8 @@ class Story extends React.Component {
     super(props);
     this.state = {
       showReportModal: false,
-      reportJustification: ""
+      reportJustification: "",
+      showSnackBar: false
     }  
     this.handleTyping = this.handleTyping.bind(this);
     this.displayReportDialog = this.displayReportDialog.bind(this);
@@ -76,13 +77,12 @@ class Story extends React.Component {
   closeReportDialog() {
     this.setState({showReportModal: false});
   }
+  
+  handleTimeoutSnackbar() {
+    this.setState({showSnackBar: false});
+  }
 
   handleReport() {
-
-    // then, what you can do is have a separate thing in firebase
-    // that is an array of all the reported stories, a justification
-    // for that story, and that story's unique firebase ID.  theoretically
-    // this could then be inspect by the moderators.
     var storyRef = firebase.database().ref('stories/' + this.props.storyKey);
     storyRef.update({
       reported: true
@@ -94,7 +94,7 @@ class Story extends React.Component {
       reportTime: firebase.database.ServerValue.TIMESTAMP
     } 
     reportsRef.push(reportedStory);
-    console.log("handle report of " + this.props.storyKey)
+    this.setState({showSnackBar: true, showReportModal: false});
   }
 
   render() {
@@ -139,7 +139,13 @@ class Story extends React.Component {
                   <Button onClick={this.closeReportDialog}>Cancel</Button>
                 </DialogActions>
               </DialogContent>
-          </Dialog>       
+          </Dialog>
+          <Snackbar
+            active={this.state.showSnackBar}
+            onTimeout={this.handleTimeoutSnackbar}
+          >
+            <span className="snackBarText">Thank you for reporting this story</span>
+          </Snackbar>       
       </div>
       );
   }
