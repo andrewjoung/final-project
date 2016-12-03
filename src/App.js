@@ -140,7 +140,7 @@ class App extends React.Component {
                     placeholder="Feel free to share your experiences about identity, politics, or living in America. We simply ask that your story promotes understanding and equality."
                 />
                 <Textfield
-                    label="Tags..."
+                    label="Tags... (e.g. black, latino, lgbtq, muslim)"
                     floatingLabel
                     style={{width: '500px'}}
                     name="tags"
