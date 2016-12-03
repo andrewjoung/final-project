@@ -28,6 +28,14 @@ p{
   
 }
 
+@media screen and (max-width: 440px) {
+  .mdl-layout-title{
+    display: flex;
+   
+  }
+}
+
+ 
 @media screen and (max-width: 1024px) {
   header.mdl-layout__header.mdl-layout__header--transparent.navLink {
     display: flex;
@@ -40,3 +48,17 @@ p{
   width: 100%;
 }
 
+.navWrap{
+  padding-top:5px;
+  padding-bottom: 8px; 
+  justify-content: center;
+  display: flex;
+  background-color: linen;
+}
+
+.navWrap button{
+    
+    background-color: lightcoral;
+    color:white;
+    margin-right: 10px; 
+}
