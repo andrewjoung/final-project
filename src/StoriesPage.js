@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import firebase from 'firebase'; 
-import {Card, CardTitle, CardText, CardActions, Button, CardMenu, IconButton, Menu, MenuItem} from 'react-mdl';
+import {Card, CardTitle, CardText, CardActions, Button, CardMenu, IconButton, Menu, MenuItem, Snackbar, Dialog, DialogContent, DialogTitle, DialogActions, Textfield} from 'react-mdl';
 
 class StoriesPage extends React.Component {
   constructor(props) {
@@ -33,14 +33,17 @@ class StoriesPage extends React.Component {
 
   render() {
     var storiesArray = this.state.stories.map(function(story) {
-      console.log(story);
       return <Story content={story.content} title={story.title} storyKey={story.key}/>
     });
-    //console.log(this.state);
-    console.log(storiesArray);
     return (
       <div>
-        {storiesArray}           
+        {storiesArray}
+        <Snackbar
+          active={this.state.showSnackBar}
+          onTimeout={this.handleTimeoutSnackbar}
+        >
+          <span className="snackBarText">Thank you for sharing your story!</span>
+        </Snackbar>           
       </div>
     );
   }
@@ -52,12 +55,45 @@ class StoriesPage extends React.Component {
 class Story extends React.Component {
   constructor(props) {
     super(props);
-    this.handleReport = this.handleReport.bind(this);  
+    this.state = {
+      showReportModal: false,
+      reportJustification: ""
+    }  
+    this.handleTyping = this.handleTyping.bind(this);
+    this.displayReportDialog = this.displayReportDialog.bind(this);
+    this.closeReportDialog = this.closeReportDialog.bind(this);
+    this.handleReport = this.handleReport.bind(this);
+  }
+
+  handleTyping(event) {
+    this.setState({reportJustification: event.target.value})
+  }
+
+  displayReportDialog() {
+    this.setState({showReportModal: true});
+  }
+
+  closeReportDialog() {
+    this.setState({showReportModal: false});
   }
 
   handleReport() {
-    // take this.props.storyKey to find the story in firebase, 
-    // then set the boolean flag "reported" to equal true.
+
+    // then, what you can do is have a separate thing in firebase
+    // that is an array of all the reported stories, a justification
+    // for that story, and that story's unique firebase ID.  theoretically
+    // this could then be inspect by the moderators.
+    var storyRef = firebase.database().ref('stories/' + this.props.storyKey);
+    storyRef.update({
+      reported: true
+    });
+    var reportsRef = firebase.database().ref('reportedStores/');
+    var reportedStory = {
+      storyKey: this.props.storyKey,
+      justification: this.state.reportJustification,
+      reportTime: firebase.database.ServerValue.TIMESTAMP
+    } 
+    reportsRef.push(reportedStory);
     console.log("handle report of " + this.props.storyKey)
   }
 
@@ -65,6 +101,14 @@ class Story extends React.Component {
     // you'll have to create a new unique id for the like button. 
     // you can use the this.props.storyKey, but maybe hash it with m5 or something?
     var storyID = this.props.storyKey;
+    var disableReport; 
+    
+    if (!this.state.reportJustification || this.state.reportJustification == "") {
+      disableReport = true;
+    } else {
+      disableReport = false;
+    }
+    
     return(
       <div className="cardDiv">
         <Card shadow={0} style={{width: '512px', margin: 'auto'}}>
@@ -75,29 +119,30 @@ class Story extends React.Component {
           <CardMenu style={{color: 'gray'}}>
             <IconButton name="settings" id={storyID}/>
             <Menu target={storyID} align="right">
-              <MenuItem onClick={this.handleReport}>Report</MenuItem>
+              <MenuItem onClick={this.displayReportDialog}>Report</MenuItem>
             </Menu>
           </CardMenu>
-        </Card>         
+        </Card>
+        <Dialog open={this.state.showReportModal} style={{width: '500px'}}>
+            <DialogTitle>Report post</DialogTitle>
+              <DialogContent>
+                <p>We take reports very seriously.  Please justify your report below.</p>
+                 <Textfield
+                    label="Report details"
+                    floatingLabel
+                    style={{width: '500px'}}
+                    onChange={this.handleTyping}
+                    rows={7}
+                />
+                <DialogActions>
+                  <Button onClick={this.handleReport} disabled={disableReport} raised colored>Send Report</Button>
+                  <Button onClick={this.closeReportDialog}>Cancel</Button>
+                </DialogActions>
+              </DialogContent>
+          </Dialog>       
       </div>
       );
   }
 }
 
 export default StoriesPage;
-
-/*
- <Card shadow={0} style={{width: '512px', margin: 'auto'}}>
-        <CardTitle style={{color: '#fff', height: '176px', background: 'url(http://www.getmdl.io/assets/demos/welcome_card.jpg) center / cover'}}>Welcome</CardTitle>
-        <CardText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Mauris sagittis pellentesque lacus eleifend lacinia...
-        </CardText>
-        <CardActions border>
-            <Button colored>Get Started</Button>
-        </CardActions>
-        <CardMenu style={{color: '#fff'}}>
-            <IconButton name="share" />
-        </CardMenu>
-    </Card> 
-*/
