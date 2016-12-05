@@ -33,6 +33,10 @@ p{
     display: flex;
    
   }
+  .navWrap{
+    display: none;
+  }
+
 
 }
 
@@ -43,7 +47,9 @@ p{
     
   }
 
-  
+  .smaller{
+    display: none;
+  }
   
 }
 
