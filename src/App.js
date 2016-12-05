@@ -106,12 +106,9 @@ class App extends React.Component {
                       <Tooltip label="Share your story!">
                         <IconButton name="message" className="shareLink navLink" onClick={this.handleShareLink} aria-label="Share your story" />
                       </Tooltip>
-                    </Navigation>
-                  
+                    </Navigation>      
                   </Header>
-
                 </div>
-
               </div>
               {/* this div below has to be outside of actual header tag becase we render 
                   the images, then the display on of the header, then our punch line*/}
@@ -120,18 +117,7 @@ class App extends React.Component {
                     <p className = "headliner">Educating the world, post election, one story at a time.</p>
               </div>
             </Layout>
-
-            <div>
-                <FABButton colored ripple id="navButton">
-                  <Icon name="add" />
-                </FABButton>
-                <Menu target="navButton" align="left">
-                  <MenuItem><Link className="navLink" to='/'>Stories</Link></MenuItem>
-                  <MenuItem><Link className="navLink" to='/data'>Data</Link></MenuItem>
-                  <MenuItem><Link className="navLink" to='/help'>Get Involved</Link></MenuItem>
-                  <MenuItem onClick={this.handleShareLink}>Share</MenuItem>
-                </Menu>
-            </div>
+            
           </div>
           <p class="headliner">Educating the world, post election, one story at a time.</p>
           <Dialog open={this.state.showShareModal} style={{ width: '75%' }}>
@@ -183,6 +169,17 @@ class App extends React.Component {
           </Snackbar>
         </div>
         {this.props.children}
+        <div className="mobileNav">
+          <FABButton colored ripple id="navButton">
+            <Icon name="add" />
+          </FABButton>
+          <Menu target="navButton" valign="top">
+            <MenuItem><Link className="navLink" to='/'>Stories</Link></MenuItem>
+            <MenuItem><Link className="navLink" to='/data'>Data</Link></MenuItem>
+            <MenuItem><Link className="navLink" to='/help'>Get Involved</Link></MenuItem>
+            <MenuItem onClick={this.handleShareLink}>Share</MenuItem>
+          </Menu>
+        </div>
       </div>
     );
   }

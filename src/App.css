@@ -1,71 +1,36 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
 
 p {
   text-align: center;
 }
 
 header.mdl-layout__header.mdl-layout__header--transparent.navLink {
-  display: flex;  
+  display: none;
 }
 
-@media screen and (max-width: 705px) {
-  header.mdl-layout__header.mdl-layout__header--transparent.navLink {
-    display: flex;
-   
-  }
-
-  div .navWrap {
-    display: none;
-  }
-
-  div .smaller {
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-  }
+div .navWrap {
+  display: none;
 }
 
-@media (min-width: 705px) {
-  div .smaller {
-    display: none;
-  }
-
-  div .navWrap {
-    display: flex;
-  }
+div .smaller {
+  margin: 10px;
+  display: flex;
+  justify-content: center;
 }
- 
-@media (min-width: 1024px) {
-  header.mdl-layout__header.mdl-layout__header--transparent.navLink {
-    display: flex; 
-  }  
-  .smaller{
-    display: none;
-  }
-  
+
+.mobileNav {
+  position: fixed;
+  bottom: 0;
+  margin: 10px;
+}
+
+#navButton {
+  background-color: lightcoral;
+}
+
+.smaller .button {
+  background-color: lightcoral;
+  color: white;
 }
 
 .head{
@@ -82,7 +47,6 @@ header.mdl-layout__header.mdl-layout__header--transparent.navLink {
 }
 
 .navWrap button{
-    
     background-color: lightcoral;
     color:white;
     margin-right: 10px; 
@@ -104,6 +68,27 @@ div .mdl-layout__header-row {
   background-color: rgba(0, 0, 0, 0.09);;
 }
 
+/*make z-index -1 when the header is above the card, but it needs to be 0 in order to be clicked*/
 div .mdl-card {
-  z-index: -1;
+  z-index: 0;
+}
+
+@media (min-width: 705px) {
+  
+  header.mdl-layout__header.mdl-layout__header--transparent.navLink {
+    display: flex;
+  }
+
+  div .smaller {
+    display: none;
+  }
+
+  div .mobileNav {
+    display: none;
+  }
+
+  div .navWrap {
+    display: flex;
+  }
+ 
 }
