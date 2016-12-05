@@ -127,14 +127,15 @@ class App extends React.Component {
           <p class="headliner">Educating the world, post election, one story at a time.</p>
           <Dialog open={this.state.showShareModal} style={{ width: '500px' }}>
             <DialogTitle>Share your story!</DialogTitle>
-            <DialogContent>
-              <p>We'd love to hear your story.</p>
-              <Textfield
-                label="Username..."
-                floatingLabel
-                style={{ width: '500px' }}
-                name="username"
-                onChange={this.handleTyping}
+
+              <DialogContent>
+                <p>We'd love to hear your story.</p>
+                <Textfield
+                    label="Display Name"
+                    floatingLabel
+                    style={{width: '500px'}}
+                    name="username"
+                    onChange={this.handleTyping}
                 />
               <Textfield
                 label="Title"
@@ -143,21 +144,23 @@ class App extends React.Component {
                 name="title"
                 onChange={this.handleTyping}
                 />
-              <Textfield
-                label="Story..."
-                floatingLabel
-                style={{ width: '500px' }}
-                name="story"
-                onChange={this.handleTyping}
-                rows={7}
-                placeholder="Feel free to share your experiences about identity, politics, or living in America. We simply ask that your story promotes understanding and equality."
+
+                <Textfield
+                    label="Story"
+                    floatingLabel
+                    style={{width: '500px'}}
+                    name="story"
+                    onChange={this.handleTyping}
+                    rows={7}
+                    placeholder="Feel free to share your experiences about identity, politics, or living in America. We simply ask that your story promotes understanding and equality."
                 />
-              <Textfield
-                label="Tags... (e.g. black, latino, lgbtq, muslim)"
-                floatingLabel
-                style={{ width: '500px' }}
-                name="tags"
-                onChange={this.handleTyping}
+                <Textfield
+                    label="Tags"
+                    floatingLabel
+                    style={{width: '500px'}}
+                    name="tags"
+                    onChange={this.handleTyping}
+                    placeholder="A comma separated list, e.g. Black, Latino, LGBTQ, Muslim"
                 />
               <DialogActions>
                 <Button onClick={this.postToFirebase} disabled={disableShare} raised colored>Share!</Button>
