@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import firebase from 'firebase';
-import {Card, CardTitle, CardText, CardActions, Button, CardMenu, IconButton, Menu, MenuItem, Snackbar, Dialog, DialogContent, DialogTitle, DialogActions, Textfield} from 'react-mdl';
+import {Card, CardTitle, CardText, CardActions, Button, CardMenu, IconButton, Menu, MenuItem, Snackbar, Dialog, DialogContent, DialogTitle, DialogActions, Textfield, Badge} from 'react-mdl';
+var _ = require('lodash');
 
 
 class StoriesPage extends React.Component {
@@ -25,6 +26,7 @@ class StoriesPage extends React.Component {
         storyObj.key = childSnapshot.key;
         storiesArray.push(storyObj);
       });
+      _.reverse(storiesArray); // displays most recent stories first
       thisComponent.setState({ stories: storiesArray })
     });
   }
@@ -33,49 +35,64 @@ class StoriesPage extends React.Component {
     firebase.database().ref('stories/').off();
   }
 
-  handleClick(event){
-    // event.target.name
-    console.log(event); 
+  handleClick(tagName, randomize){
     this.setState({stories: []})
     var storiesRef = firebase.database().ref('stories/');
     storiesRef.on('value', (snapshot) => {
       var storiesArray = [];
       snapshot.forEach(function (childSnapshot){
         var storyObj = childSnapshot.val();
-        //var tags = storyObj.tag;
-
-        // [tag1, tag2, tag3]
-        // array.forEach(function(string) { to lowerCase }
-        // if array contains(event)
-        
-
-        console.log(storyObj);
-        if(storyObj.tags == event){
+        storyObj.key = childSnapshot.key;
+        if (tagName == "") {
           storiesArray.push(storyObj);
+        } else {
+          if (storyObj.tags) {
+            var tagsString = storyObj.tags;
+            var tagsArray = tagsString.split(",");
+            var processedTags = tagsArray.map(function(tag) {
+              var trimmed = tag.trim();
+              var lower = trimmed.toLowerCase();
+              return lower;            
+            });
+            if (processedTags.includes(tagName)) {
+              storiesArray.push(storyObj);
+            }
+          }
         }
-      })
+    })
+      if (randomize) {
+        storiesArray = _.shuffle(storiesArray);
+        //console.log(shuffled);
+      } else {
+        _.reverse(storiesArray); // displays most recent stories first
+      }
       this.setState({stories: storiesArray});
     })
   }
 
   render() {
-
+    var content = <div></div>
+    if (this.state.stories.length == 0) {
+      content = <p>Sorry, no stories with that tag were found!</p>
+    }
+    var i = -1;
     var storiesArray = this.state.stories.map(function(story) {
-      //console.log(`i: ${i}`);
-      return <Story  content={story.content} title={story.title} storyKey={story.key}/>
-    });
-    return (
+      i++;
+      return <Story key={i} content={story.content} title={story.title} storyKey={story.key} author={story.poster}/>
+    }, i);
+    return (  
       <div>
       <div className = "navWrap" >
-          <Button raised ripple className="button" name="recent" onClick = {this.handleClick.bind(this, 'recent')} >Most Recent</Button>
-          <Button raised ripple className="button" name="liked" onClick = {this.handleClick.bind(this, 'liked')}>Most Liked</Button>
-          <Button raised ripple className="button" name="black" onClick = {this.handleClick.bind(this, 'black')}>Black</Button>
-          <Button raised ripple className="button" name="latino" onClick = {this.handleClick}>Latino</Button>
-          <Button raised ripple className="button" name="muslim" onClick = {this.handleClick}>Muslim</Button>
-          <Button raised ripple className="button" name="lgbtq" onClick = {this.handleClick}>LGBTQ</Button>
-          <Button raised ripple className="button" name="other" onClick = {this.handleClick}>Other</Button>
+          <Button raised ripple className="button" onClick = {this.componentDidMount} >Most Recent</Button>
+          <Button raised ripple className="button" onClick = {this.handleClick}>Most Liked</Button>
+          <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'black', false)}>Black</Button>
+          <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'latino', false)}>Latino</Button>
+          <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'muslim', false)}>Muslim</Button>
+          <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'lgbtq', false)}>LGBTQ</Button>
+          <Button raised ripple className="button" onClick = {this.handleClick.bind(this, "", true)}>Randomize</Button>
         </div>
       <div>
+        {content}
         {storiesArray}
         <Snackbar
           active={this.state.showSnackBar}
@@ -98,12 +115,15 @@ class Story extends React.Component {
     this.state = {
       showReportModal: false,
       reportJustification: "",
-      showSnackBar: false
+      showSnackBar: false,
+      coloredLike: false
     }  
     this.handleTyping = this.handleTyping.bind(this);
     this.displayReportDialog = this.displayReportDialog.bind(this);
     this.closeReportDialog = this.closeReportDialog.bind(this);
     this.handleReport = this.handleReport.bind(this);
+    this.handleTimeoutSnackbar = this.handleTimeoutSnackbar.bind(this);
+    this.handleLike = this.handleLike.bind(this);
   }
 
   handleTyping(event) {
@@ -137,6 +157,31 @@ class Story extends React.Component {
     this.setState({showSnackBar: true, showReportModal: false});
   }
 
+  handleLike() {
+    var storyRef = firebase.database().ref('stories/' + this.props.storyKey);
+    if (this.state.coloredLike == false ) { 
+      this.setState({coloredLike: true});
+      storyRef.transaction(function(story) {
+        if (story) {
+          story.likes++;
+        }
+        return story;
+      }); 
+    } else { 
+      this.setState({coloredLike: false});
+      storyRef.transaction(function(story) {
+        if (story) {
+          story.likes--;
+        }
+        return story;
+      });  
+    }   
+  }
+
+  componentWillUnMount() {
+    firebase.database().ref('stories/' + this.props.storyKey).off();
+  }
+
   render() {
     // you'll have to create a new unique id for the like button. 
     // you can use the this.props.storyKey, but maybe hash it with m5 or something?
@@ -154,9 +199,10 @@ class Story extends React.Component {
         <Card className="card" shadow={0} style={{width: '512px', margin: 'auto'}}>
           <CardTitle style={{color: 'black', height: '75px'}}>{this.props.title}</CardTitle>
           <CardText>
-            {this.props.content}
+            {this.props.content} -- {this.props.author}
           </CardText>
           <CardMenu style={{color: 'gray'}}>
+            <IconButton name="thumb_up" onClick={this.handleLike} colored={this.state.coloredLike}/>
             <IconButton name="settings" id={storyID}/>
             <Menu target={storyID} align="right">
               <MenuItem onClick={this.displayReportDialog}>Report</MenuItem>
