@@ -50,6 +50,7 @@ class StoriesPage extends React.Component {
           storiesArray.push(storyObj);
         } else {
           if (storyObj.tags) {
+            tagName = tagName.toLowerCase();
             var tagsString = storyObj.tags;
             var tagsArray = tagsString.split(",");
             var processedTags = tagsArray.map(function(tag) {
