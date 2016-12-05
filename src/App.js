@@ -173,7 +173,7 @@ class App extends React.Component {
           <FABButton colored ripple id="navButton">
             <Icon name="add" />
           </FABButton>
-          <Menu target="navButton" valign="top">
+          <Menu target="navButton" valign="top" align="right">
             <MenuItem><Link className="navLink" to='/'>Stories</Link></MenuItem>
             <MenuItem><Link className="navLink" to='/data'>Data</Link></MenuItem>
             <MenuItem><Link className="navLink" to='/help'>Get Involved</Link></MenuItem>

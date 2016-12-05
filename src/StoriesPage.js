@@ -106,7 +106,7 @@ class StoriesPage extends React.Component {
           <Textfield
               label="Tag search"
               floatingLabel
-              style={{width: '200px'}}
+              style={{width: '75%'}}
               onChange={this.handleTyping}
           />
           <IconButton raised ripple className="button" name="search"onClick = {this.handleClick.bind(this, this.state.searchValue, false)} />
@@ -228,7 +228,7 @@ class Story extends React.Component {
     
     return(
       <div className="cardDiv">
-        <Card className="card" shadow={0} style={{width: '512px', margin: 'auto'}}>
+        <Card className="card" shadow={0} style={{width: '100%', margin: 'auto'}}>
           <CardTitle style={{color: 'black', height: '75px'}}>{this.props.title}</CardTitle>
           <CardText>
             {this.props.content} -- {this.props.author}
