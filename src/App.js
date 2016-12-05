@@ -122,33 +122,29 @@ class App extends React.Component {
               </div>
             </Layout>
           </div>
-
-
           <p class="headliner">Educating the world, post election, one story at a time.</p>
-          <Dialog open={this.state.showShareModal} style={{ width: '500px' }}>
+          <Dialog open={this.state.showShareModal} style={{ width: '75%' }}>
             <DialogTitle>Share your story!</DialogTitle>
-
               <DialogContent>
                 <p>We'd love to hear your story.</p>
                 <Textfield
                     label="Display Name"
                     floatingLabel
-                    style={{width: '500px'}}
+                    style={{width: '100%'}}
                     name="username"
                     onChange={this.handleTyping}
                 />
               <Textfield
                 label="Title"
                 floatingLabel
-                style={{ width: '500px' }}
+                style={{ width: '100%' }}
                 name="title"
                 onChange={this.handleTyping}
                 />
-
                 <Textfield
                     label="Story"
                     floatingLabel
-                    style={{width: '500px'}}
+                    style={{width: '100%'}}
                     name="story"
                     onChange={this.handleTyping}
                     rows={7}
@@ -157,7 +153,7 @@ class App extends React.Component {
                 <Textfield
                     label="Tags"
                     floatingLabel
-                    style={{width: '500px'}}
+                    style={{width: '100%'}}
                     name="tags"
                     onChange={this.handleTyping}
                     placeholder="A comma separated list, e.g. Black, Latino, LGBTQ, Muslim"
