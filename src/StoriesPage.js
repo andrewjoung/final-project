@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import firebase from 'firebase';
-import {Card, CardTitle, CardText, CardActions, Button, CardMenu, IconButton, Menu, MenuItem, Snackbar, Dialog, DialogContent, DialogTitle, DialogActions, Textfield} from 'react-mdl';
+import {Card, CardTitle, CardText, CardActions, Button, CardMenu, IconButton, Menu, MenuItem, Snackbar, Dialog, DialogContent, DialogTitle, DialogActions, Textfield, Badge} from 'react-mdl';
 var _ = require('lodash');
 
 
@@ -34,7 +34,6 @@ class StoriesPage extends React.Component {
   componentWillUnMount() {
     firebase.database().ref('stories/').off();
   }
-
 
   handleClick(tagName){
     this.setState({stories: []})
@@ -70,7 +69,7 @@ class StoriesPage extends React.Component {
     var i = -1;
     var storiesArray = this.state.stories.map(function(story) {
       i++;
-      return <Story key={i} content={story.content} title={story.title} storyKey={story.key}/>
+      return <Story key={i} content={story.content} title={story.title} storyKey={story.key} author={story.poster}/>
     }, i);
     return (  
       <div>
@@ -107,13 +106,15 @@ class Story extends React.Component {
     this.state = {
       showReportModal: false,
       reportJustification: "",
-      showSnackBar: false
+      showSnackBar: false,
+      coloredLike: false
     }  
     this.handleTyping = this.handleTyping.bind(this);
     this.displayReportDialog = this.displayReportDialog.bind(this);
     this.closeReportDialog = this.closeReportDialog.bind(this);
     this.handleReport = this.handleReport.bind(this);
     this.handleTimeoutSnackbar = this.handleTimeoutSnackbar.bind(this);
+    this.handleLike = this.handleLike.bind(this);
   }
 
   handleTyping(event) {
@@ -147,6 +148,31 @@ class Story extends React.Component {
     this.setState({showSnackBar: true, showReportModal: false});
   }
 
+  handleLike() {
+    var storyRef = firebase.database().ref('stories/' + this.props.storyKey);
+    if (this.state.coloredLike == false ) { 
+      this.setState({coloredLike: true});
+      storyRef.transaction(function(story) {
+        if (story) {
+          story.likes++;
+        }
+        return story;
+      }); 
+    } else { 
+      this.setState({coloredLike: false});
+      storyRef.transaction(function(story) {
+        if (story) {
+          story.likes--;
+        }
+        return story;
+      });  
+    }   
+  }
+
+  componentWillUnMount() {
+    firebase.database().ref('stories/' + this.props.storyKey).off();
+  }
+
   render() {
     // you'll have to create a new unique id for the like button. 
     // you can use the this.props.storyKey, but maybe hash it with m5 or something?
@@ -164,9 +190,10 @@ class Story extends React.Component {
         <Card className="card" shadow={0} style={{width: '512px', margin: 'auto'}}>
           <CardTitle style={{color: 'black', height: '75px'}}>{this.props.title}</CardTitle>
           <CardText>
-            {this.props.content}
+            {this.props.content} -- {this.props.author}
           </CardText>
           <CardMenu style={{color: 'gray'}}>
+            <IconButton name="thumb_up" onClick={this.handleLike} colored={this.state.coloredLike}/>
             <IconButton name="settings" id={storyID}/>
             <Menu target={storyID} align="right">
               <MenuItem onClick={this.displayReportDialog}>Report</MenuItem>
