@@ -28,10 +28,14 @@ p{
   
 }
 
-@media screen and (max-width: 440px) {
-  .mdl-layout-title{
+@media screen and (max-width: 705px) {
+  header.mdl-layout__header.mdl-layout__header--transparent.navLink {
     display: flex;
    
+  }
+
+  .navWrap{
+    visibility: hidden;
   }
 }
 
@@ -41,6 +45,12 @@ p{
     display: flex;
     
   }
+
+  .smaller{
+    visibility: hidden;
+    
+  }
+  
 }
 
 .head{
@@ -68,6 +78,10 @@ p{
 }
 
 .headliner{
-  margin-left: 0px;
+  margin-top: 50px;
+  padding-left: 36px;
   float: left;
+  color: rgb(255,255,255);
 }
+
+

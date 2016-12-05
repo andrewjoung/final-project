@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Layout, Header, Navigation, Dialog, DialogContent, 
-  DialogTitle, DialogActions, Textfield, Button, Snackbar, IconButton, Tooltip } 
-    from 'react-mdl';
+import {
+  Layout, Header, Navigation, Dialog, DialogContent,
+  DialogTitle, DialogActions, Textfield, Button, Snackbar, IconButton, Tooltip
+}
+  from 'react-mdl';
 import { Link, hashHistory } from 'react-router';
 import firebase from 'firebase';
 //import {Header } from 'material-design-lite';
@@ -38,24 +40,24 @@ class App extends React.Component {
 
   // closes the snackbar
   handleTimeoutSnackbar() {
-    this.setState({showSnackBar: false});
+    this.setState({ showSnackBar: false });
   }
 
   // updates the state of the app based on what the user has typed into 
   // the story modal
   handleTyping(event) {
-    this.setState({[event.target.name]: event.target.value})
+    this.setState({ [event.target.name]: event.target.value })
   }
-  
+
   // sends the story and its relevant information to firebase
   postToFirebase() {
     var user = "";
     if (!this.state.username) {
-      user = "Anonymous" 
+      user = "Anonymous"
     } else {
       user = this.state.username;
     }
-    var storyData= {
+    var storyData = {
       title: this.state.title,
       content: this.state.story,
       poster: user,
@@ -68,9 +70,9 @@ class App extends React.Component {
     }
     var storiesRef = firebase.database().ref('stories/');
     storiesRef.push(storyData);
-    this.setState({showShareModal: false, showSnackBar: true});
+    this.setState({ showShareModal: false, showSnackBar: true });
   }
-  
+
   render() {
     // disables the share button when a story has not been typed 
     var disableShare;
@@ -82,7 +84,7 @@ class App extends React.Component {
     // changes background image depending on current route
     var backgroundURL = "";
     var content = "";
-    if(hashHistory.getCurrentLocation().pathname === "/") {
+    if (hashHistory.getCurrentLocation().pathname === "/") {
       backgroundURL = './books.jpg'
     } else if (hashHistory.getCurrentLocation().pathname === "/data") {
       backgroundURL = "./spacex.jpg";
@@ -91,74 +93,83 @@ class App extends React.Component {
     }
     return (
       <div>
-        <div style={{height: '300px', position: 'relative'}}>
-          <div className="layout">  
-            <Layout style={{background: 'url('+ backgroundURL + ') center / cover'}}>
-            <div className="navWrapper">
-              <div className="head">  
-                <Header transparent title="Fabella" className = "mdl-layout mdl-js-layout mdl-layout--fixed-header" className="navLink">
-                  <Navigation>
-                    <Link className="navLink" to='/'>Stories</Link>
-                    <Link className="navLink" to='/data'>Data</Link>
-                    <Link className="navLink" to='/help'>Get Involved</Link>
-                    <Tooltip label="Share your story!">
-                      <IconButton name="message" className="shareLink navLink" onClick={this.handleShareLink} aria-label="Share your story"/>
-                    </Tooltip>
-                  </Navigation>         
-                </Header>
-               <p class ="headliner">Educating the world, post election, one story at a time.</p>
+        <div style={{ height: '300px', position: 'relative' }}>
+          <div className="layout">
+            <Layout style={{ background: 'url(' + backgroundURL + ') center / cover' }}>
+              <div className="navWrapper">
+                <div className="head">
+                  <Header transparent title="Fabella" className="mdl-layout mdl-js-layout mdl-layout--fixed-header" className="navLink">
+                    <Navigation>
+                      <Link className="navLink" to='/'>Stories</Link>
+                      <Link className="navLink" to='/data'>Data</Link>
+                      <Link className="navLink" to='/help'>Get Involved</Link>
+                      <Tooltip label="Share your story!">
+                        <IconButton name="message" className="shareLink navLink" onClick={this.handleShareLink} aria-label="Share your story" />
+                      </Tooltip>
+                    </Navigation>
+                  
+                  </Header>
+
+                </div>
+
+
               </div>
-              
-              </div>
-              {/* make this p element render conditionally depending on the current page*/ }
+              {/* this div below has to be outside of actual header tag becase we render 
+                  the images, then the display on of the header, then our punch line*/}
               {/*<p>Informing people one story at a time</p>*/}
+              <div className ="headliner"> 
+                    <p className = "headliner">Educating the world, post election, one story at a time.</p>
+              </div>
             </Layout>
           </div>
-          <Dialog open={this.state.showShareModal} style={{width: '500px'}}>
+
+
+          <p class="headliner">Educating the world, post election, one story at a time.</p>
+          <Dialog open={this.state.showShareModal} style={{ width: '500px' }}>
             <DialogTitle>Share your story!</DialogTitle>
-              <DialogContent>
-                <p>We'd love to hear your story.</p>
-                <Textfield
-                    label="Username..."
-                    floatingLabel
-                    style={{width: '500px'}}
-                    name="username"
-                    onChange={this.handleTyping}
+            <DialogContent>
+              <p>We'd love to hear your story.</p>
+              <Textfield
+                label="Username..."
+                floatingLabel
+                style={{ width: '500px' }}
+                name="username"
+                onChange={this.handleTyping}
                 />
-                 <Textfield
-                    label="Title"
-                    floatingLabel
-                    style={{width: '500px'}}
-                    name="title"
-                    onChange={this.handleTyping}
+              <Textfield
+                label="Title"
+                floatingLabel
+                style={{ width: '500px' }}
+                name="title"
+                onChange={this.handleTyping}
                 />
-                <Textfield
-                    label="Story..."
-                    floatingLabel
-                    style={{width: '500px'}}
-                    name="story"
-                    onChange={this.handleTyping}
-                    rows={7}
-                    placeholder="Feel free to share your experiences about identity, politics, or living in America. We simply ask that your story promotes understanding and equality."
+              <Textfield
+                label="Story..."
+                floatingLabel
+                style={{ width: '500px' }}
+                name="story"
+                onChange={this.handleTyping}
+                rows={7}
+                placeholder="Feel free to share your experiences about identity, politics, or living in America. We simply ask that your story promotes understanding and equality."
                 />
-                <Textfield
-                    label="Tags... (e.g. black, latino, lgbtq, muslim)"
-                    floatingLabel
-                    style={{width: '500px'}}
-                    name="tags"
-                    onChange={this.handleTyping}
+              <Textfield
+                label="Tags... (e.g. black, latino, lgbtq, muslim)"
+                floatingLabel
+                style={{ width: '500px' }}
+                name="tags"
+                onChange={this.handleTyping}
                 />
-                <DialogActions>
-                  <Button onClick={this.postToFirebase} disabled={disableShare} raised colored>Share!</Button>
-                  <Button onClick={this.closeModal}>Cancel</Button>
-                </DialogActions>
-              </DialogContent>
+              <DialogActions>
+                <Button onClick={this.postToFirebase} disabled={disableShare} raised colored>Share!</Button>
+                <Button onClick={this.closeModal}>Cancel</Button>
+              </DialogActions>
+            </DialogContent>
           </Dialog>
           <Snackbar
             active={this.state.showSnackBar}
             onTimeout={this.handleTimeoutSnackbar}
-          >
-          <span className="snackBarText">Thank you for sharing your story!</span>
+            >
+            <span className="snackBarText">Thank you for sharing your story!</span>
           </Snackbar>
         </div>
         {this.props.children}
