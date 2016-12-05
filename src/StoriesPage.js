@@ -93,20 +93,24 @@ class StoriesPage extends React.Component {
     
     return (  
       <div>
-      <div className="smaller" >
-      <IconButton id="filter" name="filter_list" className="shareLink navLink" onClick={this.handleShareLink} aria-label="Share your story" />
-      <Menu target="filter" align="left">
-        <MenuItem onClick={this.componentDidMount}>Most Recent </ MenuItem>
-        <MenuItem onClick={this.handleClick}>Most Liked </MenuItem >
-        <MenuItem onClick={this.handleClick.bind(this, 'black', false)}>Black </MenuItem >
-        <MenuItem onClick={this.handleClick.bind(this, 'latino', false)}>Latino </MenuItem >
-        <MenuItem onClick={this.handleClick.bind(this, 'muslim', false)}>Muslim </MenuItem >
-        <MenuItem onClick={this.handleClick.bind(this, 'lgbtq', false)}>LGBTQ </MenuItem >
-        <MenuItem onClick={this.handleClick.bind(this, "", true)}>Randomize</MenuItem >
-      </Menu> 
-    
-      </div>
-
+        <div className="smaller" >
+          <IconButton id="filter" name="filter_list" className="shareLink navLink" onClick={this.handleShareLink} aria-label="Share your story" />
+          <Menu target="filter" align="left">
+            <MenuItem onClick={this.componentDidMount}>Most Recent </ MenuItem>
+            <MenuItem onClick={this.handleClick.bind(this, 'black', false)}>Black </MenuItem >
+            <MenuItem onClick={this.handleClick.bind(this, 'latino', false)}>Latino </MenuItem >
+            <MenuItem onClick={this.handleClick.bind(this, 'muslim', false)}>Muslim </MenuItem >
+            <MenuItem onClick={this.handleClick.bind(this, 'lgbtq', false)}>LGBTQ </MenuItem >
+            <MenuItem onClick={this.handleClick.bind(this, "", true)}>Randomize</MenuItem >
+          </Menu> 
+          <Textfield
+              label="Tag search"
+              floatingLabel
+              style={{width: '200px'}}
+              onChange={this.handleTyping}
+          />
+          <IconButton raised ripple className="button" name="search"onClick = {this.handleClick.bind(this, this.state.searchValue, false)} />
+        </div>
       <div className = "navWrap" >
           <Button raised ripple className="button" onClick = {this.componentDidMount} >Most Recent</Button>
           <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'black', false)}>Black</Button>
@@ -117,7 +121,7 @@ class StoriesPage extends React.Component {
         </div>
         <div className = "navWrap" >
           <Textfield
-              label="Search"
+              label="Tag search"
               floatingLabel
               style={{width: '200px'}}
               onChange={this.handleTyping}
