@@ -35,15 +35,23 @@ class StoriesPage extends React.Component {
 
   handleClick(event){
     // event.target.name
-    console.log(event.target.name);
+    console.log(event); 
     this.setState({stories: []})
     var storiesRef = firebase.database().ref('stories/');
     storiesRef.on('value', (snapshot) => {
       var storiesArray = [];
       snapshot.forEach(function (childSnapshot){
         var storyObj = childSnapshot.val();
-        if(storyObj.tag == event.target.name){
-          storiesArray.push(childSnapshot);
+        //var tags = storyObj.tag;
+
+        // [tag1, tag2, tag3]
+        // array.forEach(function(string) { to lowerCase }
+        // if array contains(event)
+        
+
+        console.log(storyObj);
+        if(storyObj.tags == event){
+          storiesArray.push(storyObj);
         }
       })
       this.setState({stories: storiesArray});
@@ -53,14 +61,15 @@ class StoriesPage extends React.Component {
   render() {
 
     var storiesArray = this.state.stories.map(function(story) {
-      return <Story content={story.content} title={story.title} storyKey={story.key}/>
+      //console.log(`i: ${i}`);
+      return <Story  content={story.content} title={story.title} storyKey={story.key}/>
     });
     return (
       <div>
       <div className = "navWrap" >
-          <Button raised ripple className="button" name="recent" onClick = {this.handleClick} >Most Recent</Button>
-          <Button raised ripple className="button" name="liked" onClick = {this.handleClick}>Most Liked</Button>
-          <Button raised ripple className="button" name="black" onClick = {this.handleClick}>Black</Button>
+          <Button raised ripple className="button" name="recent" onClick = {this.handleClick.bind(this, 'recent')} >Most Recent</Button>
+          <Button raised ripple className="button" name="liked" onClick = {this.handleClick.bind(this, 'liked')}>Most Liked</Button>
+          <Button raised ripple className="button" name="black" onClick = {this.handleClick.bind(this, 'black')}>Black</Button>
           <Button raised ripple className="button" name="latino" onClick = {this.handleClick}>Latino</Button>
           <Button raised ripple className="button" name="muslim" onClick = {this.handleClick}>Muslim</Button>
           <Button raised ripple className="button" name="lgbtq" onClick = {this.handleClick}>LGBTQ</Button>

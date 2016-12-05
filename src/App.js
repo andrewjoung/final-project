@@ -106,7 +106,9 @@ class App extends React.Component {
                     </Tooltip>
                   </Navigation>         
                 </Header>
+               <p class ="headliner">Educating the world, post election, one story at a time.</p>
               </div>
+              
               </div>
               {/* make this p element render conditionally depending on the current page*/ }
               {/*<p>Informing people one story at a time</p>*/}

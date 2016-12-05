@@ -66,3 +66,8 @@ p{
 .card{
   background-color: linen;
 }
+
+.headliner{
+  margin-left: 0px;
+  float: left;
+}
