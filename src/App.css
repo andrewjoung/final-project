@@ -34,9 +34,6 @@ p{
    
   }
 
-  .navWrap{
-    visibility: hidden;
-  }
 }
 
  
@@ -46,10 +43,7 @@ p{
     
   }
 
-  .smaller{
-    visibility: hidden;
-    
-  }
+  
   
 }
 
