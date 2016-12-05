@@ -107,7 +107,9 @@ class App extends React.Component {
                     </Tooltip>
                   </Navigation>         
                 </Header>
+               <p class ="headliner">Educating the world, post election, one story at a time.</p>
               </div>
+              
               </div>
               {/* make this p element render conditionally depending on the current page*/ }
               {/*<p>Informing people one story at a time</p>*/}
@@ -141,7 +143,7 @@ class App extends React.Component {
                     placeholder="Feel free to share your experiences about identity, politics, or living in America. We simply ask that your story promotes understanding and equality."
                 />
                 <Textfield
-                    label="Tags..."
+                    label="Tags... (e.g. black, latino, lgbtq, muslim)"
                     floatingLabel
                     style={{width: '500px'}}
                     name="tags"
@@ -161,9 +163,6 @@ class App extends React.Component {
           </Snackbar>
         </div>
         {this.props.children}
-         <footer role="contentinfo">
-          <p>Made by us</p>
-         </footer>
       </div>
     );
   }

@@ -12,6 +12,7 @@ class StoriesPage extends React.Component {
       stories: []
     }
     this.componentDidMount = this.componentDidMount.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -32,37 +33,55 @@ class StoriesPage extends React.Component {
     firebase.database().ref('stories/').off();
   }
 
-  handleClick(event) {
-    //event.target.name
+
+  handleClick(tagName){
     this.setState({stories: []})
     var storiesRef = firebase.database().ref('stories/');
     storiesRef.on('value', (snapshot) => {
       var storiesArray = [];
       snapshot.forEach(function (childSnapshot){
         var storyObj = childSnapshot.val();
-        // if storyObj.tag contains event.target.name, then push it onto storiesArray 
+        storyObj.key = childSnapshot.key;
+        if (storyObj.tags) {
+          var tagsString = storyObj.tags;
+          var tagsArray = tagsString.split(",");
+          var processedTags = tagsArray.map(function(tag) {
+            var trimmed = tag.trim();
+            var lower = trimmed.toLowerCase();
+            return lower;            
+          });
+          if (processedTags.includes(tagName)) {
+            storiesArray.push(storyObj);
+          }
+        }
       })
+      this.setState({stories: storiesArray});
     })
-
   }
 
   render() {
-
+    var content = <div></div>
+    if (this.state.stories.length == 0) {
+      content = <p>Sorry, no results for this tag were found!</p>
+    }
+    var i = -1;
     var storiesArray = this.state.stories.map(function(story) {
-      return <Story content={story.content} title={story.title} storyKey={story.key}/>
-    });
+      i++;
+      return <Story key={i} content={story.content} title={story.title} storyKey={story.key}/>
+    }, i);
     return (  
       <div>
       <div className = "navWrap" >
-          <Button raised ripple className="button" name="recent" onClick={this.handleClick}>Most Recent</Button>
-          <Button raised ripple className="button">Most Liked</Button>
-          <Button raised ripple className="button">Black</Button>
-          <Button raised ripple className="button">Latino</Button>
-          <Button raised ripple className="button">Muslim</Button>
-          <Button raised ripple className="button">LGBTQ</Button>
-          <Button raised ripple className="button">Other</Button>
+          <Button raised ripple className="button" onClick = {this.componentDidMount} >Most Recent</Button>
+          <Button raised ripple className="button" onClick = {this.handleClick}>Most Liked</Button>
+          <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'black')}>Black</Button>
+          <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'latino')}>Latino</Button>
+          <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'muslim')}>Muslim</Button>
+          <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'lgbtq')}>LGBTQ</Button>
+          <Button raised ripple className="button" onClick = {this.handleClick}>Other</Button>
         </div>
       <div>
+        {content}
         {storiesArray}
         <Snackbar
           active={this.state.showSnackBar}
@@ -91,6 +110,7 @@ class Story extends React.Component {
     this.displayReportDialog = this.displayReportDialog.bind(this);
     this.closeReportDialog = this.closeReportDialog.bind(this);
     this.handleReport = this.handleReport.bind(this);
+    this.handleTimeoutSnackbar = this.handleTimeoutSnackbar.bind(this);
   }
 
   handleTyping(event) {
