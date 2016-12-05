@@ -170,8 +170,8 @@ class App extends React.Component {
         </div>
         {this.props.children}
         <div className="mobileNav">
-          <FABButton colored ripple id="navButton">
-            <Icon name="add" />
+          <FABButton colored ripple id="navButton" aria-label="Navigation">
+            <Icon name="navigation"/>
           </FABButton>
           <Menu target="navButton" valign="top" align="right">
             <MenuItem><Link className="navLink" to='/'>Stories</Link></MenuItem>
