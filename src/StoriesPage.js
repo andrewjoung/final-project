@@ -128,7 +128,7 @@ class StoriesPage extends React.Component {
           />
           <IconButton raised ripple className="button" name="search"onClick = {this.handleClick.bind(this, this.state.searchValue, false)} /> 
         </div>
-      <div>
+      <div className="mainContent">
         {content}
         {storiesArray}
         <Snackbar
@@ -143,9 +143,6 @@ class StoriesPage extends React.Component {
   }
 }
 
-// render the first 10 or 15 stories from firebase, and then have a big "banner"
-// at the bottom that serves as the link to the Data page
-// also include the ability for the user to read more stories....
 class Story extends React.Component {
   constructor(props) {
     super(props);
@@ -220,8 +217,6 @@ class Story extends React.Component {
   }
 
   render() {
-    // you'll have to create a new unique id for the like button. 
-    // you can use the this.props.storyKey, but maybe hash it with m5 or something?
     var storyID = this.props.storyKey;
     var disableReport; 
     
@@ -246,14 +241,14 @@ class Story extends React.Component {
             </Menu>
           </CardMenu>
         </Card>
-        <Dialog open={this.state.showReportModal} style={{width: '500px'}}>
+        <Dialog open={this.state.showReportModal} style={{width: '75%'}}>
             <DialogTitle>Report post</DialogTitle>
               <DialogContent>
                 <p>We take reports very seriously.  Please justify your report below.</p>
                  <Textfield
                     label="Report details"
                     floatingLabel
-                    style={{width: '500px'}}
+                    style={{width: '100%'}}
                     onChange={this.handleTyping}
                     rows={7}
                 />
