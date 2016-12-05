@@ -62,7 +62,7 @@ class StoriesPage extends React.Component {
   render() {
     var content = <div></div>
     if (this.state.stories.length == 0) {
-      content = <p>Sorry, no results for this tag were found!</p>
+      content = <p>Sorry, no stories with that tag were found!</p>
     }
     var i = -1;
     var storiesArray = this.state.stories.map(function(story) {
