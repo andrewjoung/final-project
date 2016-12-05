@@ -44,6 +44,7 @@ class App extends React.Component {
   // updates the state of the app based on what the user has typed into 
   // the story modal
   handleTyping(event) {
+    console.log(event.target.name);
     this.setState({[event.target.name]: event.target.value})
   }
   
@@ -160,6 +161,9 @@ class App extends React.Component {
           </Snackbar>
         </div>
         {this.props.children}
+         <footer role="contentinfo">
+          <p>Made by us</p>
+         </footer>
       </div>
     );
   }

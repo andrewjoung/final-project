@@ -32,15 +32,29 @@ class StoriesPage extends React.Component {
     firebase.database().ref('stories/').off();
   }
 
+  handleClick(event) {
+    //event.target.name
+    this.setState({stories: []})
+    var storiesRef = firebase.database().ref('stories/');
+    storiesRef.on('value', (snapshot) => {
+      var storiesArray = [];
+      snapshot.forEach(function (childSnapshot){
+        var storyObj = childSnapshot.val();
+        // if storyObj.tag contains event.target.name, then push it onto storiesArray 
+      })
+    })
+
+  }
+
   render() {
 
     var storiesArray = this.state.stories.map(function(story) {
       return <Story content={story.content} title={story.title} storyKey={story.key}/>
     });
-    return (
+    return (  
       <div>
       <div className = "navWrap" >
-          <Button raised ripple className="button">Most Recent</Button>
+          <Button raised ripple className="button" name="recent" onClick={this.handleClick}>Most Recent</Button>
           <Button raised ripple className="button">Most Liked</Button>
           <Button raised ripple className="button">Black</Button>
           <Button raised ripple className="button">Latino</Button>
