@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import firebase from 'firebase';
 import {Card, CardTitle, CardText, CardActions, Button, CardMenu, IconButton, Menu, MenuItem, Snackbar, Dialog, DialogContent, DialogTitle, DialogActions, Textfield} from 'react-mdl';
+var _ = require('lodash');
 
 
 class StoriesPage extends React.Component {
@@ -25,6 +26,7 @@ class StoriesPage extends React.Component {
         storyObj.key = childSnapshot.key;
         storiesArray.push(storyObj);
       });
+      _.reverse(storiesArray); // displays most recent stories first
       thisComponent.setState({ stories: storiesArray })
     });
   }
@@ -55,6 +57,7 @@ class StoriesPage extends React.Component {
           }
         }
       })
+      _.reverse(storiesArray); // displays most recent stories first
       this.setState({stories: storiesArray});
     })
   }
