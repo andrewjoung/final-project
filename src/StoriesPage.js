@@ -35,7 +35,7 @@ class StoriesPage extends React.Component {
     firebase.database().ref('stories/').off();
   }
 
-  handleClick(tagName){
+  handleClick(tagName, randomize){
     this.setState({stories: []})
     var storiesRef = firebase.database().ref('stories/');
     storiesRef.on('value', (snapshot) => {
@@ -43,20 +43,29 @@ class StoriesPage extends React.Component {
       snapshot.forEach(function (childSnapshot){
         var storyObj = childSnapshot.val();
         storyObj.key = childSnapshot.key;
-        if (storyObj.tags) {
-          var tagsString = storyObj.tags;
-          var tagsArray = tagsString.split(",");
-          var processedTags = tagsArray.map(function(tag) {
-            var trimmed = tag.trim();
-            var lower = trimmed.toLowerCase();
-            return lower;            
-          });
-          if (processedTags.includes(tagName)) {
-            storiesArray.push(storyObj);
+        if (tagName == "") {
+          storiesArray.push(storyObj);
+        } else {
+          if (storyObj.tags) {
+            var tagsString = storyObj.tags;
+            var tagsArray = tagsString.split(",");
+            var processedTags = tagsArray.map(function(tag) {
+              var trimmed = tag.trim();
+              var lower = trimmed.toLowerCase();
+              return lower;            
+            });
+            if (processedTags.includes(tagName)) {
+              storiesArray.push(storyObj);
+            }
           }
         }
-      })
-      _.reverse(storiesArray); // displays most recent stories first
+    })
+      if (randomize) {
+        storiesArray = _.shuffle(storiesArray);
+        //console.log(shuffled);
+      } else {
+        _.reverse(storiesArray); // displays most recent stories first
+      }
       this.setState({stories: storiesArray});
     })
   }
@@ -76,11 +85,11 @@ class StoriesPage extends React.Component {
       <div className = "navWrap" >
           <Button raised ripple className="button" onClick = {this.componentDidMount} >Most Recent</Button>
           <Button raised ripple className="button" onClick = {this.handleClick}>Most Liked</Button>
-          <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'black')}>Black</Button>
-          <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'latino')}>Latino</Button>
-          <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'muslim')}>Muslim</Button>
-          <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'lgbtq')}>LGBTQ</Button>
-          <Button raised ripple className="button" onClick = {this.handleClick}>Other</Button>
+          <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'black', false)}>Black</Button>
+          <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'latino', false)}>Latino</Button>
+          <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'muslim', false)}>Muslim</Button>
+          <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'lgbtq', false)}>LGBTQ</Button>
+          <Button raised ripple className="button" onClick = {this.handleClick.bind(this, "", true)}>Randomize</Button>
         </div>
       <div>
         {content}
