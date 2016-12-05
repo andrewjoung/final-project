@@ -10,10 +10,12 @@ class StoriesPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      stories: []
+      stories: [],
+      searchValue: ""
     }
     this.componentDidMount = this.componentDidMount.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleTyping = this.handleTyping.bind(this);
   }
 
   componentDidMount() {
@@ -27,6 +29,7 @@ class StoriesPage extends React.Component {
         storiesArray.push(storyObj);
       });
       _.reverse(storiesArray); // displays most recent stories first
+      storiesArray = _.slice(storiesArray, 0, 15);
       thisComponent.setState({ stories: storiesArray })
     });
   }
@@ -61,13 +64,16 @@ class StoriesPage extends React.Component {
         }
     })
       if (randomize) {
-        storiesArray = _.shuffle(storiesArray);
-        //console.log(shuffled);
+        storiesArray = _.shuffle(storiesArray); // randomizes the array of stories
       } else {
         _.reverse(storiesArray); // displays most recent stories first
       }
       this.setState({stories: storiesArray});
     })
+  }
+
+  handleTyping(event) {
+    this.setState({searchValue: event.target.value})
   }
 
   render() {
@@ -82,14 +88,22 @@ class StoriesPage extends React.Component {
     }, i);
     return (  
       <div>
-      <div className = "navWrap" >
+        <div className = "navWrap" >
           <Button raised ripple className="button" onClick = {this.componentDidMount} >Most Recent</Button>
-          <Button raised ripple className="button" onClick = {this.handleClick}>Most Liked</Button>
           <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'black', false)}>Black</Button>
           <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'latino', false)}>Latino</Button>
-          <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'muslim', false)}>Muslim</Button>
           <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'lgbtq', false)}>LGBTQ</Button>
+          <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'muslim', false)}>Muslim</Button>
           <Button raised ripple className="button" onClick = {this.handleClick.bind(this, "", true)}>Randomize</Button>
+        </div>
+        <div className = "navWrap" >
+          <Textfield
+              label="Search"
+              floatingLabel
+              style={{width: '200px'}}
+              onChange={this.handleTyping}
+          />
+          <IconButton raised ripple className="button" name="search"onClick = {this.handleClick.bind(this, this.state.searchValue, false)} /> 
         </div>
       <div>
         {content}
