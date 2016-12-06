@@ -171,11 +171,12 @@ class Story extends React.Component {
     storyRef.update({
       reported: true
     });
-    var reportsRef = firebase.database().ref('reportedStores/');
+    var reportsRef = firebase.database().ref('reportedStories/');
     var reportedStory = {
       storyKey: this.props.storyKey,
       justification: this.state.reportJustification,
-      reportTime: firebase.database.ServerValue.TIMESTAMP
+      reportTime: firebase.database.ServerValue.TIMESTAMP,
+      storyContent: this.props.content
     } 
     reportsRef.push(reportedStory);
     this.setState({showSnackBar: true, showReportModal: false});

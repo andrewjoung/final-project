@@ -4,6 +4,7 @@ import App from './App';
 import GetInvolved from './GetInvolved';
 import DataPage from './DataPage';
 import StoriesPage from './StoriesPage';
+import AdminPage, {LoginPage} from './AdminPage';
 import firebase from 'firebase';
 import {Router, Route, hashHistory, IndexRoute} from 'react-router';
 import 'react-mdl/extra/material.css';
@@ -25,6 +26,8 @@ ReactDOM.render(
       <IndexRoute component={StoriesPage} />
       <Route path="data" component={DataPage}/>
       <Route path="help" component={GetInvolved}/>
+      <Route path="login" component={LoginPage}/>
+      <Route path="mods" component={AdminPage}/>
     </ Route>
   </ Router>,
   document.getElementById('root')

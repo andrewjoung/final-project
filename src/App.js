@@ -88,8 +88,10 @@ class App extends React.Component {
       backgroundURL = './books.jpg'
     } else if (hashHistory.getCurrentLocation().pathname === "/data") {
       backgroundURL = "./spacex.jpg";
-    } else {
+    } else if (hashHistory.getCurrentLocation().pathname === "/help") {
       backgroundURL = './capitolHill.jpg'
+    } else {
+      backgroundURL = './rocks.jpg'
     }
     return (
       <div>
@@ -184,7 +186,7 @@ class App extends React.Component {
           <FooterSection type="left" logo="Fabella">
             <FooterLinkList>
               <a href="https://github.com/andrewjoung/final-project/">Code</a>
-              <a href="#">Admin Portal</a>
+              <Link to="/login">Admin Portal</Link>
             </FooterLinkList>
             <p>A website created by Andrew Joung, Dominick Tavitian, Scott Kinders, and Adam Bourn</p>
           </FooterSection>
