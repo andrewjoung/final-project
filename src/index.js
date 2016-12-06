@@ -4,11 +4,12 @@ import App from './App';
 import GetInvolved from './GetInvolved';
 import DataPage from './DataPage';
 import StoriesPage from './StoriesPage';
-import './index.css';
+
 import firebase from 'firebase';
 import {Router, Route, hashHistory, IndexRoute} from 'react-router';
 import 'react-mdl/extra/material.css';
 import 'react-mdl/extra/material.js';
+//import './index.css';
 import './App.css';
 
 var config = {

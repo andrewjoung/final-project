@@ -64,8 +64,27 @@ div .smaller {
 
 div .mdl-layout__header-row {
   z-index: 1;
-  background-color: rgba(0, 0, 0, 0.09);;
+  background-color: rgba(0, 0, 0, 0.09);
 }
+
+.navLink {
+  color:black;
+  text-decoration: none;
+  text-shadow: 1px 1px 5px black;
+}
+
+li > .navLink {
+  text-shadow: none;
+}
+
+span > .navLink {
+  color: white;
+}
+
+.cardDiv {
+  margin: 40px;
+}
+
 
 /*make z-index -1 when the header is above the card, but it needs to be 0 in order to be clicked*/
 div .mdl-card {

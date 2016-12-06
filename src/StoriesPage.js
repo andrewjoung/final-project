@@ -87,10 +87,6 @@ class StoriesPage extends React.Component {
       i++;
       return <Story key={i} content={story.content} title={story.title} storyKey={story.key} author={story.poster}/>
     }, i);
-
-
-
-    
     return (  
       <div>
         <div className="smaller" >
@@ -111,7 +107,7 @@ class StoriesPage extends React.Component {
           />
           <IconButton raised ripple className="button" name="search"onClick = {this.handleClick.bind(this, this.state.searchValue, false)} />
         </div>
-      <div className = "navWrap" >
+        <div className = "navWrap" >
           <Button raised ripple className="button" onClick = {this.componentDidMount} >Most Recent</Button>
           <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'black', false)}>Black</Button>
           <Button raised ripple className="button" onClick = {this.handleClick.bind(this, 'latino', false)}>Latino</Button>
@@ -128,16 +124,10 @@ class StoriesPage extends React.Component {
           />
           <IconButton raised ripple className="button" name="search"onClick = {this.handleClick.bind(this, this.state.searchValue, false)} /> 
         </div>
-      <div className="mainContent">
-        {content}
-        {storiesArray}
-        <Snackbar
-          active={this.state.showSnackBar}
-          onTimeout={this.handleTimeoutSnackbar}
-        >
-          <span className="snackBarText">Thank you for sharing your story!</span>
-        </Snackbar>           
-      </div>
+        <div className="mainContent">
+          {content}
+          {storiesArray}         
+        </div>
       </div>
     );
   }
@@ -262,7 +252,7 @@ class Story extends React.Component {
             active={this.state.showSnackBar}
             onTimeout={this.handleTimeoutSnackbar}
           >
-            <span className="snackBarText">Thank you for reporting this story</span>
+            <span >Thank you for reporting this story</span>
           </Snackbar>       
       </div>
       );

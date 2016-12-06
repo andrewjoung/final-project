@@ -98,7 +98,7 @@ class App extends React.Component {
             <Layout style={{ background: 'url(' + backgroundURL + ') center / cover' }}>
               <div className="navWrapper">
                 <div className="head">
-                  <Header transparent title="Fabella" className="mdl-layout mdl-js-layout mdl-layout--fixed-header" className="navLink">
+                  <Header transparent title={<Link className="navLink" to='/'>Fabella</Link>} className="mdl-layout mdl-js-layout mdl-layout--fixed-header" className="navLink">
                     <Navigation>
                       <Link className="navLink" to='/'>Stories</Link>
                       <Link className="navLink" to='/data'>Data</Link>
@@ -120,7 +120,7 @@ class App extends React.Component {
             
           </div>
           <p class="headliner">Educating the world, post election, one story at a time.</p>
-          <Dialog open={this.state.showShareModal} style={{ width: '75%' }}>
+          <Dialog open={this.state.showShareModal} style={{ width: '75%'}}>
             <DialogTitle>Share your story!</DialogTitle>
               <DialogContent>
                 <p>We'd love to hear your story.</p>

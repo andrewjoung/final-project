@@ -4,28 +4,7 @@ body {
   font-family: sans-serif;
 }
 
-.navLink {
-  text-shadow: 1px 1px 5px black;
-}
 
-/*
-.head {
-  color: black;
-}
-*/
-.mdl-layout__title, .mdl-layout-title  {
-  font-size: 100px;
-}
 
-.shareLink {
-  cursor: pointer;
-}
 
-.snackBarText {
-  text-align: center;
-}
-
-.cardDiv {
-  margin: 40px;
-}
 
