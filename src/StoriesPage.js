@@ -63,7 +63,7 @@ class StoriesPage extends React.Component {
             }
           }
         }
-    })
+      })
       if (randomize) {
         storiesArray = _.shuffle(storiesArray); // randomizes the array of stories
       } else {

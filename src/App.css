@@ -1,7 +1,3 @@
-p {
-  text-align: center;
-}
-
 header.mdl-layout__header.mdl-layout__header--transparent.navLink {
   display: none;
 }
@@ -32,7 +28,7 @@ div .smaller {
   color: white;
 }
 
-.head{
+.head {
   position: fixed;
   width: 100%;
 }
@@ -84,7 +80,6 @@ span > .navLink {
 .cardDiv {
   margin: 40px;
 }
-
 
 /*make z-index -1 when the header is above the card, but it needs to be 0 in order to be clicked*/
 div .mdl-card {
