@@ -4,7 +4,7 @@ import './App.css';
 import {
   Layout, Header, Navigation, Dialog, DialogContent,
   DialogTitle, DialogActions, Textfield, Button, Snackbar, IconButton, Tooltip,
-FABButton, Icon, Menu, MenuItem}
+FABButton, Icon, Menu, MenuItem, Footer, FooterSection, FooterLinkList}
   from 'react-mdl';
 import { Link, hashHistory } from 'react-router';
 import firebase from 'firebase';
@@ -180,6 +180,15 @@ class App extends React.Component {
             <MenuItem onClick={this.handleShareLink}>Share</MenuItem>
           </Menu>
         </div>
+        <Footer size="mini">
+          <FooterSection type="left" logo="Fabella">
+            <FooterLinkList>
+              <a href="https://github.com/andrewjoung/final-project/">Code</a>
+              <a href="#">Admin Portal</a>
+            </FooterLinkList>
+            <p>A website created by Andrew Joung, Dominick Tavitian, Scott Kinders, and Adam Bourn</p>
+          </FooterSection>
+        </Footer>
       </div>
     );
   }
