@@ -99,6 +99,7 @@ class App extends React.Component {
           <div className="layout">
             <Layout style={{ background: 'url(' + backgroundURL + ') center / cover' }}>
               <div className="navWrapper">
+                <h1 className ="mobileHeader">Fabella</h1>
                 <div className="head">
                   <Header transparent title={<Link className="navLink" to='/'>Fabella</Link>} className="mdl-layout mdl-js-layout mdl-layout--fixed-header" className="navLink">
                     <Navigation>

@@ -11,7 +11,11 @@ div .smaller {
   display: flex;
   justify-content: center;
 }
-
+.mobileHeader{
+  color:rgb(255,255,255);
+  margin-left:75px;
+  text-shadow: 1px 1px 5px black;
+}
 .mobileNav {
   position: fixed;
   bottom: 0;
@@ -52,10 +56,14 @@ div .smaller {
 }
 
 .headliner{
-  margin-top: 50px;
+  margin-top: 40px;
   padding-left: 36px;
   float: left;
   color: rgb(255,255,255);
+  max-width: 70%;
+  font-size: 1.3rem;
+  text-shadow: 1px 1px 5px black;
+  
 }
 
 div .mdl-layout__header-row {
@@ -129,6 +137,16 @@ footer {
 
   div .navWrap {
     display: flex;
+    
+  }
+  .mobileHeader{
+    display: none;
   }
  
+ .headliner{
+   max-width: 100%;
+   margin-top:90px;
+   text-shadow: 1px 1px 5px black;
+ }
+
 }
