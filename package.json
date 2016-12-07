@@ -1,10 +1,13 @@
 {
   "name": "final-project",
+  "homepage": "andrewjoung.github.io/final-project/",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
     "react-scripts": "0.7.0"
   },
+  "author": "Andrew Joung",
+  "contributors": ["Dominick Tivitian, Scott Kinder, Adam Bourn"],
   "dependencies": {
     "bootstrap": "^3.3.7",
     "d3": "^3.5.17",
