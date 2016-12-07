@@ -9,7 +9,8 @@ demonstrate kindness for all walks of life.
 We want our readers to walk away with a renewed sense of empathy for people with
 different identities.  We believe storytelling is an effective means to accomplish this
 goal.  Storytelling cannot be the sole education force, so we have included an 
-interactive dataset focused on adressing this goal.
+interactive dataset (specifically pertaining to the American Muslim community) 
+focused on adressing this goal. 
 
 Our mission and goals are modeled after similar web initiatives, in particular,
 the Facebook group "Pantsuit Nation" and Vox's "Secret Life of Muslims."
