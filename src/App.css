@@ -125,6 +125,11 @@ div .mdl-card {
   z-index: 0;
 }
 
+/*Specifies font-size for card text*/
+div .mdl-card__supporting-text {
+  font-size: 1.5rem;
+}
+
 /*Gives the login page margins to offset the footer*/
 .loginPage {
   margin-top: 20px;
