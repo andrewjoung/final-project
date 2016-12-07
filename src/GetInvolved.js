@@ -92,13 +92,13 @@ class StateSearch extends React.Component {
 
     return(
       <div>
-        <div className="searchIntro">
+        <div className="searchIntro" aria-live="polite">
           <p> Contact your state Representatives and lets work towards a better tomorrow, together. </p>
           <Textfield
             onChange={this.handleTyping}
             label={this.state.labelDisplay}
             floatingLabel
-            style={{width: '200px'}}
+            style={{width: '60%'}}
           />
         </div>
         {statesToDisplay}
@@ -154,11 +154,12 @@ class SingleRep extends React.Component {
   //renders information of representives. 
 class RepInfo extends React.Component {
   render() {
+    var phoneNum = this.props.infoToUse.phone;
     return(
       <div className='repInfo'>
         <p className="repContent"> office: {this.props.infoToUse.officename} </p>
         <p className="repContent"> address: {this.props.infoToUse.officeaddress} </p>
-        <p className="repContent"> phone number: {this.props.infoToUse.phone} </p>
+        <p className="repContent"> phone number:<a href="tel:+"phoneNum> {this.props.infoToUse.phone}</a> </p>
       </div>
     );
   }

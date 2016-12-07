@@ -1,3 +1,7 @@
+.centerText {
+  text-align: center;
+}
+
 /*No display MDL Header for mobile view*/
 header.mdl-layout__header.mdl-layout__header--transparent.navLink {
   display: none;
@@ -92,6 +96,7 @@ div button {
   text-shadow: 1px 1px 5px black;
   font-weight: 200;
 }
+
 /*Gives the header a transparent backgroun*/
 div .mdl-layout__header-row {
   /*z-index: 2;*/
@@ -166,9 +171,10 @@ footer {
     width: 100%;
 }
 
+
 /*Class with large margin to push footer to bottom of screen when there is no content*/
 .emptySpaceOffsetFooter {
-  margin-bottom: 300px;
+  /*margin-bottom: 300px;*/
   text-align: center;
 }
 
