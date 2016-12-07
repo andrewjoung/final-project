@@ -553,15 +553,15 @@ class DataPage extends React.Component {
 								{questionItems}
 							</DropdownButton>
 			    			<h4>Filter Responders</h4>
-			    			<form>
+			    			<form role="form">
 				    			<FormGroup>
 				    				<h5>Age</h5>
 					    			<label htmlFor="ageMin" id="ageMinLabel">Age Min: </label>
 					    			<output htmlFor="ageMin" id="ageMinOutput">{this.state.ageMin}</output>
-					    			<input type="range" id="ageMin" min="18" max="88" step="1" onChange={this.minAgeChange} defaultValue={this.state.ageMin} />
+					    			<input type="range" id="ageMin" min="18" max="88" step="1" onChange={this.minAgeChange} defaultValue={this.state.ageMin} aria-label="Min Age" />
 					    			<label htmlFor="ageMax" id="ageMaxLabel">Age Max: </label>
 					    			<output htmlFor="ageMax" id="ageMaxOutput">{this.state.ageMax}</output>
-					    			<input type="range" id="ageMax" min="18" max="88" onChange={this.maxAgeChange} defaultValue={this.state.ageMax} />
+					    			<input type="range" id="ageMax" min="18" max="88" onChange={this.maxAgeChange} defaultValue={this.state.ageMax} aria-label="Max Age" />
 				    			</FormGroup>
 				    			<FormGroup>
 				    				<h5>Gender</h5>
@@ -587,7 +587,7 @@ class DataPage extends React.Component {
 			    			</form>
 			    			<p>Total Responses: {filterData.length}</p>
 		    			</div>
-		    			<div className="col-xs-12 col-ms-8 col-sm-9 col-md-10 col-lg-10">
+		    			<div className="col-xs-12 col-ms-8 col-sm-9 col-md-10 col-lg-10" aria-live="polite">
 				    		<BarChart
 								data={barData}
 								width={graphWidth}
