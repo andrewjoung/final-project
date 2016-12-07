@@ -97,7 +97,7 @@ class StoriesPage extends React.Component {
     var i = -1;
     var storiesArray = this.state.stories.map(function(story) {
       i++;
-      return <Story key={i} content={story.content} title={story.title} storyKey={story.key} author={story.poster}/>
+      return <Story key={i} content={story.content} title={story.title} storyKey={story.key} author={story.poster} tags={story.tags}/>
     }, i);
     return (  
       <div>
@@ -245,6 +245,9 @@ class Story extends React.Component {
           <CardTitle style={{color: 'black', height: '75px'}}>{this.props.title}</CardTitle>
           <CardText>
             {this.props.content} -- {this.props.author}
+          </CardText>
+          <CardText>
+            Tags: {this.props.tags}
           </CardText>
           <CardMenu style={{color: 'gray'}}>
             <IconButton name="thumb_up" onClick={this.handleLike} colored={this.state.coloredLike}/>
