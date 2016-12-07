@@ -30,7 +30,7 @@ ReactDOM.render(
       <Route path="help" component={GetInvolved}/>
       <Route path="login" component={LoginPage}/>
       <Route path="mods" component={AdminPage}/>
-    </ Route>
-  </ Router>,
+    </Route>
+  </Router>,
   document.getElementById('root')
 );

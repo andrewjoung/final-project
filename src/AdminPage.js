@@ -61,7 +61,7 @@ class AdminPage extends React.Component {
             return <ReportedStory reason={story.justification} time={story.reportTime} storyKey={story.storyKey} key={story.key} reportKey={story.key} theStory={story.storyContent}/>
         })
         return (
-            <div>
+            <div aria-live="polite">
                 <Button onClick={this.signOut} raised colored>SignOut</Button>
                 {content}
                 {reportsComponentArray}
@@ -178,7 +178,7 @@ class LoginPage extends React.Component {
                 <div>
                     <Button onClick={this.signIn} raised colored>Sign in</Button>
                 </div>
-                <Dialog open={this.state.showModal} style={{width: '75%'}}>
+                <Dialog open={this.state.showModal} style={{width: '75%'}} aria-live="polite">
                     <DialogTitle>Wrong email or password</DialogTitle>
                     <DialogContent>
                         <p>Please try again</p>

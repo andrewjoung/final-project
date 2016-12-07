@@ -136,7 +136,7 @@ class StoriesPage extends React.Component {
           />
           <IconButton raised ripple className="button" name="search"onClick = {this.handleClick.bind(this, this.state.searchValue, false)} /> 
         </div>
-        <div className="mainContent">
+        <div className="mainContent" aria-live="polite">
           {content}
           {storiesArray}         
         </div>
@@ -257,7 +257,7 @@ class Story extends React.Component {
             </Menu>
           </CardMenu>
         </Card>
-        <Dialog open={this.state.showReportModal} style={{width: '75%'}}>
+        <Dialog open={this.state.showReportModal} style={{width: '75%'}} aria-live="polite">
             <DialogTitle>Report post</DialogTitle>
               <DialogContent>
                 <p>We take reports very seriously.  Please justify your report below.</p>
@@ -277,6 +277,7 @@ class Story extends React.Component {
           <Snackbar
             active={this.state.showSnackBar}
             onTimeout={this.handleTimeoutSnackbar}
+            aria-live="polite"
           >
             <span >Thank you for reporting this story</span>
           </Snackbar>       
