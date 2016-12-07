@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {MenuItem} from 'react-bootstrap';
 import {Textfield} from 'react-mdl';
-//import logo from './logo.svg';
 import _STATES from './states.js';
 import _REPS from './repData.js';
 import _ from 'lodash';
@@ -25,15 +24,11 @@ class GetInvolved extends React.Component {
   render() {
     return (
         <div>
-          <div className="firstSection">
-            <h1> Finding a solution, one piece at a time </h1>
-          </div>
           <div className="secondLayer">
             <div className="helpIntroduction">
               <h1> Here is what you could do to help </h1>
               <p> sample text </p>
             </div>
-            <div className="secondSection"></div>
             <div className="organizations">
               <StateSearch listOfStates={this.state.states} />
             </div>  

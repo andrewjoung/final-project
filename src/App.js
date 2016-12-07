@@ -83,11 +83,20 @@ class App extends React.Component {
     }
     // changes background image depending on current route
     var backgroundURL = "";
+    var headline =""
+    var headlineClass = "";
     var content = "";
     if (hashHistory.getCurrentLocation().pathname === "/") {
-      backgroundURL = './books.jpg'
+      backgroundURL = './books.jpg';
+      headline = 'Educating the world, post election, one story at a time';
+      headlineClass = "headliner";
     } else if (hashHistory.getCurrentLocation().pathname === "/data") {
       backgroundURL = "./spacex.jpg";
+      headline = '';
+    } else if (hashHistory.getCurrentLocation().pathname === "/help") {
+      backgroundURL = "./capitolHill.jpg";
+      headline = "Change will not come if we wait for some other person or some other time. We are the ones we've been waiting for. We are the change that we seek. - Barack Obama"
+      headlineClass = "quote"
     } else {
       backgroundURL = './rocks.jpg'
     }
@@ -111,8 +120,8 @@ class App extends React.Component {
                   </Header>
                 </div>
               </div>
-              <div className ="headliner"> 
-                <p className = "headliner">Educating the world, post election, one story at a time.</p>
+              <div className ={headlineClass}> 
+                <p className = {headlineClass}>{headline}</p>
               </div>
             </Layout>
           </div>
