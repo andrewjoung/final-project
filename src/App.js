@@ -154,7 +154,7 @@ class App extends React.Component {
                     placeholder="A comma separated list, e.g. Black, Latino, LGBTQ, Muslim"
                 />
               <DialogActions>
-                <Button onClick={this.postToFirebase} disabled={disableShare} raised colored>Share!</Button>
+                <Button onClick={this.postToFirebase} disabled={disableShare} raised ripple colored className="pink">Share!</Button>
                 <Button onClick={this.closeModal}>Cancel</Button>
               </DialogActions>
             </DialogContent>

@@ -63,6 +63,9 @@ div .smaller {
     margin-right: 10px; 
 }
 
+div button {
+  background-color: lightcoral;
+}
 /*Styles the description that exists in the app's header*/
 .headliner{
   margin-top: 40px;
