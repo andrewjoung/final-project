@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {
   Layout, Header, Navigation, Dialog, DialogContent,
   DialogTitle, DialogActions, Textfield, Button, Snackbar, IconButton, Tooltip,
-FABButton, Icon, Menu, MenuItem, Footer, FooterSection, FooterLinkList}
-  from 'react-mdl';
+  FABButton, Icon, Menu, MenuItem, Footer, FooterSection, FooterLinkList
+} from 'react-mdl';
 import { Link, hashHistory } from 'react-router';
 import firebase from 'firebase';
-//import {Header } from 'material-design-lite';
 
+// renders a header, footer, a "share" modal, and this.props.children
 class App extends React.Component {
 
   constructor(props) {
@@ -112,14 +111,10 @@ class App extends React.Component {
                   </Header>
                 </div>
               </div>
-              {/* this div below has to be outside of actual header tag becase we render 
-                  the images, then the display on of the header, then our punch line*/}
-              {/*<p>Informing people one story at a time</p>*/}
               <div className ="headliner"> 
-                    <p className = "headliner">Educating the world, post election, one story at a time.</p>
+                <p className = "headliner">Educating the world, post election, one story at a time.</p>
               </div>
             </Layout>
-            
           </div>
           <p class="headliner">Educating the world, post election, one story at a time.</p>
           <Dialog open={this.state.showShareModal} style={{ width: '75%'}}>

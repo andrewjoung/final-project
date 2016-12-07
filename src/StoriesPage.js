@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import firebase from 'firebase';
-import {Card, CardTitle, CardText, CardActions, Button, CardMenu, IconButton, Menu, MenuItem, Snackbar, Dialog, DialogContent, DialogTitle, DialogActions, Textfield, Badge} from 'react-mdl';
-var _ = require('lodash');
+import {
+  Card, CardTitle, CardText, 
+  CardActions, Button, CardMenu, 
+  IconButton, Menu, MenuItem, Snackbar, 
+  Dialog, DialogContent, DialogTitle,
+   DialogActions, Textfield, Badge
+} from 'react-mdl';
+var _ = require('lodash'); //inset lodash
 
-
+// renders a header, footer, a "share" modal, and this.props.children
 class StoriesPage extends React.Component {
   constructor(props) {
     super(props);
@@ -18,6 +23,7 @@ class StoriesPage extends React.Component {
     this.handleTyping = this.handleTyping.bind(this);
   }
 
+// mount posts into firebase and display in program
   componentDidMount() {
     var thisComponent = this;
     var storiesRef = firebase.database().ref('stories/');
@@ -34,10 +40,14 @@ class StoriesPage extends React.Component {
     });
   }
 
+  //unmount any stories necessary 
   componentWillUnMount() {
     firebase.database().ref('stories/').off();
   }
 
+//when you click a filter, it will filter the posts by passing in the tag 
+//the post was made under, and creating a new array with only the posts with 
+//filtered or searched tags that will be shown. 
   handleClick(tagName, randomize){
     this.setState({stories: []})
     var storiesRef = firebase.database().ref('stories/');
@@ -73,10 +83,12 @@ class StoriesPage extends React.Component {
     })
   }
 
+  //handles the input
   handleTyping(event) {
     this.setState({searchValue: event.target.value})
   }
 
+  //renders the filter tab for mobile and desktop, as well as the stories
   render() {
     var content = <div></div>
     if (this.state.stories.length == 0) {
@@ -85,7 +97,7 @@ class StoriesPage extends React.Component {
     var i = -1;
     var storiesArray = this.state.stories.map(function(story) {
       i++;
-      return <Story key={i} content={story.content} title={story.title} storyKey={story.key} author={story.poster}/>
+      return <Story key={i} content={story.content} title={story.title} storyKey={story.key} author={story.poster} tags={story.tags}/>
     }, i);
     return (  
       <div>
@@ -133,6 +145,7 @@ class StoriesPage extends React.Component {
   }
 }
 
+// renders a header, footer, a "share" modal, and this.props.children
 class Story extends React.Component {
   constructor(props) {
     super(props);
@@ -150,22 +163,26 @@ class Story extends React.Component {
     this.handleLike = this.handleLike.bind(this);
   }
 
+  //handles input
   handleTyping(event) {
     this.setState({reportJustification: event.target.value})
   }
-
+  //displays report function
   displayReportDialog() {
     this.setState({showReportModal: true});
   }
 
+  //ability to close report function
   closeReportDialog() {
     this.setState({showReportModal: false});
   }
   
+  //pop-up notification once story is posted 
   handleTimeoutSnackbar() {
     this.setState({showSnackBar: false});
   }
 
+  //handles the action of stories that are reported and crete an array of reported stories
   handleReport() {
     var storyRef = firebase.database().ref('stories/' + this.props.storyKey);
     storyRef.update({
@@ -182,6 +199,7 @@ class Story extends React.Component {
     this.setState({showSnackBar: true, showReportModal: false});
   }
 
+  //handles the ability to like posts and keep track of liked posts
   handleLike() {
     var storyRef = firebase.database().ref('stories/' + this.props.storyKey);
     if (this.state.coloredLike == false ) { 
@@ -203,10 +221,14 @@ class Story extends React.Component {
     }   
   }
 
+//unmount any stories necessary 
   componentWillUnMount() {
     firebase.database().ref('stories/' + this.props.storyKey).off();
   }
 
+  //renders specific stories and posts and gives them a card with story on it
+  //and different buttons like reporting and liking. also has dialog functions like 
+  //snackbars and etc. 
   render() {
     var storyID = this.props.storyKey;
     var disableReport; 
@@ -222,7 +244,10 @@ class Story extends React.Component {
         <Card className="card" shadow={0} style={{width: '100%', margin: 'auto'}}>
           <CardTitle style={{color: 'black', height: '75px'}}>{this.props.title}</CardTitle>
           <CardText>
-            {this.props.content} -- {this.props.author}
+            {this.props.content} -- <em>{this.props.author}</em>
+          </CardText>
+          <CardText>
+            Tags: {this.props.tags}
           </CardText>
           <CardMenu style={{color: 'gray'}}>
             <IconButton name="thumb_up" onClick={this.handleLike} colored={this.state.coloredLike}/>

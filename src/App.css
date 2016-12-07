@@ -1,21 +1,28 @@
+/*No display MDL Header for mobile view*/
 header.mdl-layout__header.mdl-layout__header--transparent.navLink {
   display: none;
 }
 
+/*Hides the "desktop size screen" filter buttons on mobile for Story Page*/
 div .navWrap {
   display: none;
 }
 
+/*Styles the "mobile screen size" filter functions for Story Page*/
 div .smaller {
   margin: 10px;
   display: flex;
   justify-content: center;
 }
+
+/*Styles the mobile header elements*/
 .mobileHeader{
   color:rgb(255,255,255);
   margin-left:75px;
   text-shadow: 1px 1px 5px black;
 }
+
+/*Styles the floating mobile navigation button*/
 .mobileNav {
   position: fixed;
   bottom: 0;
@@ -23,20 +30,24 @@ div .smaller {
   margin: 10px;
 }
 
+/*Specifies navigation buttons to be light coral color*/
 #navButton {
   background-color: lightcoral;
 }
 
+/*Specifies mobile navigation buttons of StoriesPage to have white text on small screens*/
 .smaller .button {
   background-color: lightcoral;
   color: white;
 }
 
+/*Allows the header to "float" on larger screens*/
 .head {
   position: fixed;
   width: 100%;
 }
 
+/*Styles the div for the "filtering functions" of StoriesPage*/
 .navWrap{
   padding-top:5px;
   padding-bottom: 8px; 
@@ -45,16 +56,14 @@ div .smaller {
   background-color: linen;
 }
 
+/*Styles the buttons that exist in the "filtering functions" of StoriesPage*/
 .navWrap button{
     background-color: lightcoral;
     color:white;
     margin-right: 10px; 
 }
 
-.card{
-  background-color: linen;
-}
-
+/*Styles the description that exists in the app's header*/
 .headliner{
   margin-top: 40px;
   padding-left: 36px;
@@ -63,90 +72,110 @@ div .smaller {
   max-width: 70%;
   font-size: 1.3rem;
   text-shadow: 1px 1px 5px black;
-  
 }
 
+/*Gives the header a transparent backgroun*/
 div .mdl-layout__header-row {
-  z-index: 1;
+  /*z-index: 2;*/
   background-color: rgba(0, 0, 0, 0.09);
 }
 
+/*Styles the various navigation links*/
 .navLink {
   color:black;
   text-decoration: none;
   text-shadow: 1px 1px 5px black;
 }
 
+/*Removes text shadows for mobile navigation links*/
 li > .navLink {
   text-shadow: none;
 }
 
+/*Styles the navigation links in the header for larger screens*/
 span > .navLink {
   color: white;
 }
 
+/*Gives the story cards a margin on all sides*/
 .cardDiv {
   margin: 40px;
 }
 
-/*make z-index -1 when the header is above the card, but it needs to be 0 in order to be clicked*/
+
 div .mdl-card {
   z-index: 0;
 }
 
+
+/*Gives the login page margins to offset the footer*/
 .loginPage {
   margin-top: 20px;
   margin-left: 20px;
   margin-bottom: 300px;
 }
+
+/*Styles the div containing the Approve and Delete buttons in the moderator page*/
 .responses {
   width: 100%;
   display: flex;
 }
+
+/*Sets the approve and delete buttons on the moderator page to only take up 50% of the parent div*/
 .reportResponse {
   width: 50%;
   display: inline-flex;
 }
 
+/*Sets the approve button to a green color*/
 div #approve {
   color:white;
   background-color: rgba(0,128,0,0.73)
 }
 
+/*Sets the delete button to a red color*/
 div #deny {
   color:white;
   background-color: rgba(241, 19, 19, 0.74);
 }
+
+/*ensures the footer takes up entire width of page*/
 footer {
     width: 100%;
-    float: bottom;
 }
+
+/*Styling for larger screens*/
 @media (min-width: 705px) {
   
+  /*Displays the header for larger screens*/
   header.mdl-layout__header.mdl-layout__header--transparent.navLink {
     display: flex;
   }
 
+  /*Prevents mobile screen filtering functions in StoriesPage from displaying*/
   div .smaller {
     display: none;
   }
 
+  /*Prevents mobile screen navigation controls from displaying*/
   div .mobileNav {
     display: none;
   }
 
+  /*Displays the filtering function controls in StoriesPage for larger screens*/
   div .navWrap {
     display: flex;
-    
   }
+
+  /*Prevents the mobile "header" from displaying*/
   .mobileHeader{
     display: none;
   }
  
+ /*Styles the description in the header*/
  .headliner{
    max-width: 100%;
    margin-top:90px;
    text-shadow: 1px 1px 5px black;
  }
-
 }

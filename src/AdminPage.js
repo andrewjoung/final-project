@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import './App.css';
 import firebase from 'firebase';
 import {hashHistory} from 'react-router';
-import {Textfield, Dialog, DialogTitle, DialogContent, DialogActions, Button, Card, CardTitle, CardText} from 'react-mdl';
+import {
+    Textfield, Dialog, DialogTitle, 
+    DialogContent, DialogActions, 
+    Button, Card, CardTitle, CardText
+} from 'react-mdl';
 
+// loads the AdminPage, which allows moderators to delete and "unreport"
+// reported posts.
 class AdminPage extends React.Component {
     constructor(props) {
         super(props);
@@ -14,6 +20,8 @@ class AdminPage extends React.Component {
         this.signOut = this.signOut.bind(this);
     }
 
+    // updates the state of the component to include all reported stories
+    // redirects the user to the moderator login screen if they are not logged in
     componentDidMount() {
         this.unregister = firebase.auth().onAuthStateChanged(function(user) {
             if (!user) {
@@ -33,10 +41,13 @@ class AdminPage extends React.Component {
         })
     }
 
+    // unregisters firebase listeners 
     componentWillUnMount() { 
         firebase.database().ref('reportedStories/').off();
         this.unregister();
     }
+
+    // signs  out the current user
     signOut() {
         firebase.auth().signOut();
     }
@@ -52,12 +63,14 @@ class AdminPage extends React.Component {
         return (
             <div>
                 {content}
-                {reportsComponentArray}
                 <Button onClick={this.signOut} raised colored>SignOut</Button>
+                {reportsComponentArray}
             </div>
         );
     }
 }
+
+// renders a single "ReportedStory" component
 class ReportedStory extends React.Component {
     constructor(props) {
         super(props);
@@ -65,6 +78,8 @@ class ReportedStory extends React.Component {
         this.handleDelete = this.handleDelete.bind(this);
     }
 
+    // updates firebase database to "remove" the story from the 
+    // reported "column"
     handleApprove() {
         var reportedStoriesRef = firebase.database().ref('reportedStories/');
         reportedStoriesRef.child(this.props.reportKey).remove();
@@ -73,6 +88,8 @@ class ReportedStory extends React.Component {
         });  
     }
 
+    // updates firebase database to remove the reported story from the 
+    // entire app
     handleDelete() {
         var reportedStoriesRef = firebase.database().ref('reportedStories/');
         reportedStoriesRef.child(this.props.reportKey).remove();
@@ -102,6 +119,7 @@ class ReportedStory extends React.Component {
     }
 }
 
+// renders the moderator login page
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
@@ -115,11 +133,13 @@ class LoginPage extends React.Component {
         this.closeDialog = this.closeDialog.bind(this);
     }
 
+    // update the state of the component when a user types their email or password
     handleTyping(event){
         this.setState({[event.target.name]: event.target.value})
     }
 
-
+    // has firebase authenticate the user, handles logic for displaying an incorrect email/password
+    // dialog in those cases
     signIn() {
         var thisComponent = this;
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
@@ -131,6 +151,7 @@ class LoginPage extends React.Component {
             })
     }
 
+    // closes the incorrect email/password dialog
     closeDialog() {
         this.setState({showModal: false})
     }
