@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 import firebase from 'firebase';
 import {hashHistory} from 'react-router';
-import {Textfield, Dialog, DialogTitle, DialogContent, DialogActions, Button, Card, CardTitle, CardText} from 'react-mdl';
+import {
+    Textfield, Dialog, DialogTitle, 
+    DialogContent, DialogActions, 
+    Button, Card, CardTitle, CardText
+} from 'react-mdl';
 
 // loads the AdminPage, which allows moderators to delete and "unreport"
 // reported posts.
