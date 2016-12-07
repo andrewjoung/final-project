@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
 import {MenuItem} from 'react-bootstrap';
 import {Textfield} from 'react-mdl';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import _STATES from './states.js';
 import _REPS from './repData.js';
 import _ from 'lodash';
 import './getInvolved.css';
 // have the page initially be "how to get involved" 
 // search bar with dropdown menus, so you can search by state, counties, etc... 
-=======
 import './App.css';
->>>>>>> fe9fb7920ef3d68fea270cc09c083ae049f11dba
+
 
 class GetInvolved extends React.Component {
 
