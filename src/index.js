@@ -9,6 +9,10 @@ import firebase from 'firebase';
 import {Router, Route, hashHistory, IndexRoute} from 'react-router';
 import 'react-mdl/extra/material.css';
 import 'react-mdl/extra/material.js';
+import Leaflet from 'leaflet';
+import 'bootstrap/dist/css/bootstrap.css';
+
+Leaflet.Icon.Default.imagePath = '//cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0/images/'
 
 var config = {
   apiKey: "AIzaSyDYIT2x9mIRDK9_DPwtv2-B-wCAinfYrvU",

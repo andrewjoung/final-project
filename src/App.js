@@ -5,7 +5,7 @@ import { Layout, Header, Navigation } from 'react-mdl';
 import { Link, hashHistory } from 'react-router';
 
 class App extends React.Component {
-  render() {
+  /*render() {
     // should update to be in the state
     var backgroundURL = "";
     if(hashHistory.getCurrentLocation().pathname == "/") {
@@ -26,10 +26,16 @@ class App extends React.Component {
                 <Link className="navLink" to='/help'>Get Involved</Link>
               </Navigation>         
             </ Header>
-            {/* make this p element render conditionally depending on the current page*/ }
             <p>Informing people one story at a time</p>
           </Layout>
         </div>
+        {this.props.children}
+      </div>
+    );
+  }*/
+  render() {
+    return (
+      <div>
         {this.props.children}
       </div>
     );
