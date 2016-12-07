@@ -244,7 +244,7 @@ class Story extends React.Component {
         <Card className="card" shadow={0} style={{width: '100%', margin: 'auto'}}>
           <CardTitle style={{color: 'black', height: '75px'}}>{this.props.title}</CardTitle>
           <CardText>
-            {this.props.content} -- {this.props.author}
+            {this.props.content} -- <em>{this.props.author}</em>
           </CardText>
           <CardText>
             Tags: {this.props.tags}
