@@ -9,7 +9,7 @@ import './getInvolved.css';
 // search bar with dropdown menus, so you can search by state, counties, etc... 
 import './App.css';
 
-
+// renders a page with states for representatives
 class GetInvolved extends React.Component {
 
   constructor(props) {
@@ -20,7 +20,7 @@ class GetInvolved extends React.Component {
     };
   }
 
-  
+  // renders description and list of states to search 
   render() {
     return (
         <div>
@@ -41,6 +41,7 @@ class GetInvolved extends React.Component {
   }
 }
 
+// renders specific list of states and state search 
 class StateSearch extends React.Component {
   constructor(props) {
     super(props);
@@ -53,14 +54,17 @@ class StateSearch extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  //handles typing of states 
   handleTyping(event) {
     this.setState({searchWord:event.target.value});
   }
 
+  //handles clicking on states to show information 
   handleClick(selectedState) {
     this.setState({labelDisplay:selectedState, stateSelected:true, searchWord:''});
   }
 
+  //renders the states that are typed and displayed. 
   render() {
     if (this.state.searchWord !== '') {
       var filterWord = this.state.searchWord;
@@ -106,6 +110,7 @@ class StateSearch extends React.Component {
   }
 }
 
+  //renders specific states. 
 class State extends React.Component {
   constructor(props) {
     super(props);
@@ -124,7 +129,7 @@ class State extends React.Component {
   }
 }
 
-
+//renders single name of representives. 
 class SingleRep extends React.Component {
   constructor(props) {
     super(props);
@@ -146,6 +151,7 @@ class SingleRep extends React.Component {
   }
 }
 
+  //renders information of representives. 
 class RepInfo extends React.Component {
   render() {
     return(

@@ -10,7 +10,7 @@ import {
 } from 'react-mdl';
 var _ = require('lodash'); //inset lodash
 
-// renders a header, footer, a "share" modal, and this.props.children
+// renders the page for showing stories also handles clicks and typing for differenc actions.
 class StoriesPage extends React.Component {
   constructor(props) {
     super(props);
@@ -145,7 +145,7 @@ class StoriesPage extends React.Component {
   }
 }
 
-// renders a header, footer, a "share" modal, and this.props.children
+// renders reporting dialog, handles typing and liking as well as snack bars 
 class Story extends React.Component {
   constructor(props) {
     super(props);
