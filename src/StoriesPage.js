@@ -119,7 +119,7 @@ class StoriesPage extends React.Component {
           <Textfield
               label="Tag search"
               floatingLabel
-              style={{width: '200px'}}
+              style={{width: '60%'}}
               onChange={this.handleTyping}
           />
           <IconButton raised ripple className="button" name="search"onClick = {this.handleClick.bind(this, this.state.searchValue, false)} /> 

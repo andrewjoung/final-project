@@ -42,13 +42,18 @@ class AdminPage extends React.Component {
     }
 
     render() {
+        var content = <p></p>;
+        if (this.state.reportedStories.length == 0) {
+            content = <p>No reports are currently pending</p>
+        }
         var reportsComponentArray = this.state.reportedStories.map(function(story) {
             return <ReportedStory reason={story.justification} time={story.reportTime} storyKey={story.storyKey} key={story.key} reportKey={story.key} theStory={story.storyContent}/>
         })
         return (
             <div>
+                {content}
                 {reportsComponentArray}
-                <Button onClick={this.signOut}>SignOut</Button>
+                <Button onClick={this.signOut} raised colored>SignOut</Button>
             </div>
         );
     }
