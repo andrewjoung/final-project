@@ -15,11 +15,19 @@
     height: auto;
 }
 .helpIntroduction {
-    background-color: rgba(255,255,255, 0.96);
+    background-color: linen;
     height: 200px;
     width: 100%;
     z-index:0;
     padding: 20px;
+}
+
+.helpIntroduction h1 {
+    color: lightcoral;
+}
+
+.helpIntroduction p {
+    font-size: 15px;
 }
 
 .organizations {
@@ -43,13 +51,7 @@
     font-weight: 100;
 }
 
-.leaflet-container {
-    height: 1000px;
-    margin: 20%;
-    margin-bottom: 0;
-}
-
-.helpIntroduction p, .organizations p {
+ .organizations p {
     font-size: 20px;
 }
 

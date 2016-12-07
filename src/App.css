@@ -17,9 +17,13 @@ div .smaller {
 
 /*Styles the mobile header elements*/
 .mobileHeader{
+  font-size: 100px;
+  font-weight: 100;
   color:rgb(255,255,255);
-  margin-left:75px;
   text-shadow: 1px 1px 5px black;
+  margin-top: 10%;
+  margin-bottom: 0;
+  padding-left: 26px;
 }
 
 /*Styles the floating mobile navigation button*/
@@ -73,7 +77,7 @@ div button {
   float: left;
   color: rgb(255,255,255);
   max-width: 70%;
-  font-size: 1.3rem;
+  font-size: 2rem;
   text-shadow: 1px 1px 5px black;
 }
 
@@ -86,6 +90,7 @@ div button {
   font-size: 1.5rem;
   font-style: italic;
   text-shadow: 1px 1px 5px black;
+  font-weight: 200;
 }
 /*Gives the header a transparent backgroun*/
 div .mdl-layout__header-row {
@@ -162,6 +167,13 @@ footer {
   text-align: center;
 }
 
+.noDisplay {
+  display: none;
+}
+
+.navigationItems {
+  float: right;
+}
 /*Styling for larger screens*/
 @media (min-width: 705px) {
   
@@ -186,15 +198,16 @@ footer {
   }
 
   /*Prevents the mobile "header" from displaying*/
-  .mobileHeader{
+  /*.mobileHeader{
     display: none;
-  }
+  }*/
  
  /*Styles the description in the header*/
  .headliner{
    max-width: 100%;
-   margin-top:90px;
+   margin-top:5px;
    text-shadow: 1px 1px 5px black;
+   font-weight: 200;
  }
 }
 

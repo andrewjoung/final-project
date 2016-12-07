@@ -86,6 +86,7 @@ class App extends React.Component {
     var headline =""
     var headlineClass = "";
     var content = "";
+    var headerClass = "mobileHeader"
     if (hashHistory.getCurrentLocation().pathname === "/") {
       backgroundURL = './books.jpg';
       headline = 'Educating the world, post election, one story at a time';
@@ -95,6 +96,7 @@ class App extends React.Component {
       headline = '';
     } else if (hashHistory.getCurrentLocation().pathname === "/help") {
       backgroundURL = "./capitolHill.jpg";
+      headerClass="noDisplay";
       headline = "Change will not come if we wait for some other person or some other time. We are the ones we've been waiting for. We are the change that we seek. - Barack Obama"
       headlineClass = "quote"
     } else {
@@ -106,10 +108,9 @@ class App extends React.Component {
           <div className="layout">
             <Layout style={{ background: 'url(' + backgroundURL + ') center / cover' }}>
               <div className="navWrapper">
-                <h1 className ="mobileHeader">Fabella</h1>
                 <div className="head">
-                  <Header transparent title={<Link className="navLink" to='/'>Fabella</Link>} className="mdl-layout mdl-js-layout mdl-layout--fixed-header" className="navLink">
-                    <Navigation>
+                  <Header transparent className="mdl-layout mdl-js-layout mdl-layout--fixed-header" className="navLink">
+                    <Navigation className="navigationItems">
                       <Link className="navLink" to='/'>Stories</Link>
                       <Link className="navLink" to='/data'>Data</Link>
                       <Link className="navLink" to='/help'>Get Involved</Link>
@@ -121,6 +122,7 @@ class App extends React.Component {
                 </div>
               </div>
               <div className ={headlineClass}> 
+                <h1 className ={headerClass}>Fabella</h1>
                 <p className = {headlineClass}>{headline}</p>
               </div>
             </Layout>

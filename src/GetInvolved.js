@@ -27,7 +27,10 @@ class GetInvolved extends React.Component {
           <div className="secondLayer">
             <div className="helpIntroduction">
               <h1> Here is what you could do to help </h1>
-              <p> sample text </p>
+              <p> Let your voice be heard. </p>
+              <p> If you have been touched or inspired by the stories you've seen today, </p>
+              <p> step up and help work towards equality. </p>
+              <p> Let your state representatives know the types of change you would like to see. </p>
             </div>
             <div className="organizations">
               <StateSearch listOfStates={this.state.states} />
