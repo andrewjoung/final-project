@@ -535,7 +535,7 @@ class DataPage extends React.Component {
 	    return (
 	    	<div id="datapage">
 	    		<h2>Data from Muslim Communities</h2>
-	    		<p>
+	    		<p className="centerText">
 	    			This section contains data collected by Pew Research on 
 	    			Muslims in America in 2007. They conducted phone interviews 
 	    			on 1050 subject ranging in age 18 to 88. For more information or 

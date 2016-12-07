@@ -35,6 +35,10 @@ class App extends React.Component {
   closeModal() {
     this.setState({
       showShareModal: false,
+      username: "",
+      title: "",
+      story: "",
+      tags: ""
     })
   }
 
@@ -70,7 +74,13 @@ class App extends React.Component {
     }
     var storiesRef = firebase.database().ref('stories/');
     storiesRef.push(storyData);
-    this.setState({ showShareModal: false, showSnackBar: true });
+    this.setState({ showShareModal: false, 
+      showSnackBar: true,
+      username: "",
+      title: "",
+      story: "",
+      tags: "" 
+    });
   }
 
   render() {
@@ -138,6 +148,7 @@ class App extends React.Component {
                     style={{width: '100%'}}
                     name="username"
                     onChange={this.handleTyping}
+                    value={this.state.username}
                 />
               <Textfield
                 label="Title"
@@ -145,6 +156,7 @@ class App extends React.Component {
                 style={{ width: '100%' }}
                 name="title"
                 onChange={this.handleTyping}
+                value={this.state.title}
                 />
                 <Textfield
                     label="Story"
@@ -154,6 +166,7 @@ class App extends React.Component {
                     onChange={this.handleTyping}
                     rows={7}
                     placeholder="Feel free to share your experiences about identity, politics, or living in America. We simply ask that your story promotes understanding and equality."
+                    value={this.state.story}
                 />
                 <Textfield
                     label="Tags"
@@ -162,6 +175,7 @@ class App extends React.Component {
                     name="tags"
                     onChange={this.handleTyping}
                     placeholder="A comma separated list, e.g. Black, Latino, LGBTQ, Muslim"
+                    value={this.state.tags}
                 />
               <DialogActions>
                 <Button onClick={this.postToFirebase} disabled={disableShare} raised ripple colored className="pink">Share!</Button>
