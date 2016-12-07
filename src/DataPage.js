@@ -4,7 +4,7 @@ import './App.css';
 
 class DataPage extends React.Component {
   render() {
-    return (null);
+    return (<p>See this will display below the header</p>);
   }
 }
 

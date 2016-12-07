@@ -9,6 +9,10 @@
     "bootstrap": "^3.3.7",
     "firebase": "^3.6.2",
     "lodash": "^4.17.2",
+<<<<<<< HEAD
+=======
+    "material-design-lite": "^1.2.1",
+>>>>>>> 0a6ff1c1dcc51d24254025f1fc81bb3283793796
     "react": "^15.4.1",
     "react-bootstrap": "^0.30.7",
     "react-dom": "^15.4.1",

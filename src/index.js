@@ -4,7 +4,7 @@ import App from './App';
 import GetInvolved from './GetInvolved';
 import DataPage from './DataPage';
 import StoriesPage from './StoriesPage';
-import './index.css';
+import AdminPage, {LoginPage} from './AdminPage';
 import firebase from 'firebase';
 import {Router, Route, hashHistory, IndexRoute} from 'react-router';
 import 'react-mdl/extra/material.css';
@@ -13,6 +13,7 @@ import Leaflet from 'leaflet';
 import 'bootstrap/dist/css/bootstrap.css';
 
 Leaflet.Icon.Default.imagePath = '//cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0/images/'
+import './App.css';
 
 var config = {
   apiKey: "AIzaSyDYIT2x9mIRDK9_DPwtv2-B-wCAinfYrvU",
@@ -29,6 +30,8 @@ ReactDOM.render(
       <IndexRoute component={StoriesPage} />
       <Route path="data" component={DataPage}/>
       <Route path="help" component={GetInvolved}/>
+      <Route path="login" component={LoginPage}/>
+      <Route path="mods" component={AdminPage}/>
     </ Route>
   </ Router>,
   document.getElementById('root')
