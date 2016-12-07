@@ -89,24 +89,11 @@ class App extends React.Component {
       backgroundURL = './books.jpg'
     } else if (hashHistory.getCurrentLocation().pathname === "/data") {
       backgroundURL = "./spacex.jpg";
-    } else if (hashHistory.getCurrentLocation().pathname === "/help") {
-      backgroundURL = './capitolHill.jpg'
     } else {
       backgroundURL = './rocks.jpg'
     }
     return (
       <div>
-        <div style={{height: '300px', position: 'relative'}}>  
-            <Layout style={{background: 'url('+ backgroundURL + ') center / cover'}}>  
-            <Header transparent title="Stories" style={{color: 'white'}}  className="navLink">
-              <Navigation>
-                <Link className="navLink" to='/'>Stories</Link>
-                <Link className="navLink" to='/data'>Data</Link>
-                <Link className="navLink" to='/help'>Get Involved</Link>
-              </Navigation>         
-            </ Header>
-            <p>Informing people one story at a time</p>
-          </Layout>
         <div style={{ height: '300px', position: 'relative' }}>
           <div className="layout">
             <Layout style={{ background: 'url(' + backgroundURL + ') center / cover' }}>
@@ -201,10 +188,9 @@ class App extends React.Component {
               <a href="https://github.com/andrewjoung/final-project/">Code</a>
               <Link to="/login">Admin Portal</Link>
             </FooterLinkList>
-            <p>A website created by Andrew Joung, Dominick Tavitian, Scott Kinders, and Adam Bourn</p>
+            <p>A website created by Andrew Joung, Dominick Tavitian, Scott Kinder, and Adam Bourn</p>
           </FooterSection>
         </Footer>
-      </div>
       </div>
     );
   }
