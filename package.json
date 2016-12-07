@@ -6,10 +6,15 @@
     "react-scripts": "0.7.0"
   },
   "dependencies": {
+    "d3": "^3.5.17",
     "firebase": "^3.6.2",
     "lodash": "^4.17.2",
+    "install": "^0.8.2",
     "material-design-lite": "^1.2.1",
+    "npm": "^4.0.3",
+    "rd3": "^0.7.3",
     "react": "^15.4.1",
+    "react-bootstrap": "^0.30.7",
     "react-dom": "^15.4.1",
     "react-mdl": "^1.9.0",
     "react-router": "^3.0.0"
