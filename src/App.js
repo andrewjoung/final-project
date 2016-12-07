@@ -178,16 +178,16 @@ class App extends React.Component {
             <MenuItem onClick={this.handleShareLink}>Share</MenuItem>
           </Menu>
         </div>
-        <Footer size="mini">
-          <FooterSection type="left" logo="Fabella">
-            <FooterLinkList>
-              <a href="https://github.com/andrewjoung/final-project/">Code</a>
-              <Link to="/login">Admin Portal</Link>
-            </FooterLinkList>
-            <p>A website created by Andrew Joung, Dominick Tavitian, Scott Kinders, and Adam Bourn</p>
-          </FooterSection>
-        </Footer>
-      </div>
+          <Footer size="mini">
+            <FooterSection type="left" logo="Fabella">
+              <FooterLinkList>
+                <a href="https://github.com/andrewjoung/final-project/">Code</a>
+                <Link to="/login">Admin Portal</Link>
+              </FooterLinkList>
+              <p>A website created by Andrew Joung, Dominick Tavitian, Scott Kinders, and Adam Bourn</p>
+            </FooterSection>
+          </Footer>
+        </div>    
     );
   }
 }

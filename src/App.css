@@ -102,11 +102,10 @@ span > .navLink {
   margin: 40px;
 }
 
-
+/*Allows mobile navigation to scroll over cards*/
 div .mdl-card {
   z-index: 0;
 }
-
 
 /*Gives the login page margins to offset the footer*/
 .loginPage {
@@ -142,6 +141,12 @@ div #deny {
 /*ensures the footer takes up entire width of page*/
 footer {
     width: 100%;
+}
+
+/*Class with large margin to push footer to bottom of screen when there is no content*/
+.emptySpaceOffsetFooter {
+  margin-bottom: 300px;
+  text-align: center;
 }
 
 /*Styling for larger screens*/
