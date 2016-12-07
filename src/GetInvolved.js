@@ -110,7 +110,7 @@ class StateSearch extends React.Component {
   }
 }
 
-  //renders specific states. 
+  //renders specific states. g
 class State extends React.Component {
   constructor(props) {
     super(props);
