@@ -118,7 +118,7 @@ class App extends React.Component {
             </Layout>
           </div>
           <p class="headliner">Educating the world, post election, one story at a time.</p>
-          <Dialog open={this.state.showShareModal} style={{ width: '75%'}}>
+          <Dialog open={this.state.showShareModal} style={{ width: '75%'}} aria-live="polite">
             <DialogTitle>Share your story!</DialogTitle>
               <DialogContent>
                 <p>We'd love to hear your story.</p>
@@ -162,6 +162,7 @@ class App extends React.Component {
           <Snackbar
             active={this.state.showSnackBar}
             onTimeout={this.handleTimeoutSnackbar}
+            aria-live="polite"
             >
             <span className="snackBarText">Thank you for sharing your story!</span>
           </Snackbar>
